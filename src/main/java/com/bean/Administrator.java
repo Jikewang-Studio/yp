@@ -5,11 +5,6 @@ public class Administrator {
 
     private String administratorName;
 
-
-
-
-
-
     private String administratorPassword;
 
     public Integer getAdministratorId() {

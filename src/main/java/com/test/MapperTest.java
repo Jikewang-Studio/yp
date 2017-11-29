@@ -27,8 +27,9 @@ public class MapperTest{
 //        userMapper.insert(
 //                new User("haha5","ling",15451515,"44518@163.com"));
 //        System.out.println("插入成功了~~");
-//        2.测试用户查询--->
-        userMapper.selectByPrimaryKey(Long.valueOf(1));
-
+//        2.测试用户查询--->成功
+//       User user=userMapper.selectByPrimaryKey(Long.valueOf(1));
+//        System.out.println(user);
+//        3.模糊查询.
     }
 }

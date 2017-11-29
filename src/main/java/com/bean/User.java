@@ -37,6 +37,15 @@ public class User {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
     public Long getUserId() {
         return userId;
     }

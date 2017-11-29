@@ -16,6 +16,21 @@
     <result column="user_message_id" jdbcType="BIGINT" property="userMessageId" />
     <result column="attention_id" jdbcType="BIGINT" property="attentionId" />
   </resultMap>
+  <!--1.管理者界面用户信息结果集-->
+  <resultMap id="ManageUsers" type="com.bean.User">
+    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="phone_number" jdbcType="INTEGER" property="phoneNumber" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="user_success_times" jdbcType="INTEGER" property="userSuccessTimes" />
+  </resultMap>
+  <!--2.用户登录结果集-->
+  <resultMap id="UserLogin" type="com.bean.User">
+    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="phone_number" jdbcType="INTEGER" property="phoneNumber" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+  </resultMap>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -78,6 +93,16 @@
     user_id, user_name, password, user_img_url, phone_number, id_number, email, user_status, 
     photographer_id, order_id, user_success_times, user_message_id, attention_id
   </sql>
+
+  <!--1.管理员查询用户信息sql-->
+  <sql id="Manage_Users">
+    user_name,phone_number,email,user_success_times
+  </sql>
+  <!--2.用户登录验证sql-->
+  <sql id="User_Login">
+    user_id ,phone_number, password
+  </sql>
+
   <select id="selectByExample" parameterType="com.bean.UserExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -98,6 +123,24 @@
     from user
     where user_id = #{userId,jdbcType=BIGINT}
   </select>
+  <!--1.管理员用名字模糊查询-->
+  <!--List<User> selectByUserName(String userName);-->
+  <select id="selectByUserName" parameterType="java.lang.String" resultMap="ManageUsers">
+    SELECT
+     <include refid="Manage_Users"/>
+    FROM USER
+    WHERE
+    <if test='user_name != "%null%"'>
+      user_name LIKE #{userName}
+    </if>
+  </select>
+  <!--2.用户登录select语句-->
+  <select id="findUserByPhoneNumber" parameterType="java.lang.Integer" resultMap="UserLogin">
+    SELECT
+    <include refid="User_Login"/>
+    WHERE phone_number=#{phoneNumber}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from user
     where user_id = #{userId,jdbcType=BIGINT}

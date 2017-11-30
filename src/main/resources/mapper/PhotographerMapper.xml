@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.PhotographerMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Photographer">
+    <id column="photographer_id" jdbcType="BIGINT" property="photographerId" />
+    <result column="photographer_name" jdbcType="VARCHAR" property="photographerName" />
+    <result column="photographer_img_url" jdbcType="VARCHAR" property="photographerImgUrl" />
+    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="works_id" jdbcType="BIGINT" property="worksId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="attention_id" jdbcType="BIGINT" property="attentionId" />
+    <result column="oreder_id" jdbcType="BIGINT" property="orederId" />
+    <result column="photographer_success_times" jdbcType="INTEGER" property="photographerSuccessTimes" />
+    <result column="photographer_message_id" jdbcType="BIGINT" property="photographerMessageId" />
+  </resultMap>
+  <!--2.管理者，要管理的摄影师信息-->
+  <resultMap id="ManagePhotographer" type="com.bean.Photographer">
+    <id column="photographer_id" jdbcType="BIGINT" property="photographerId" />
+    <result column="photographer_name" jdbcType="VARCHAR" property="photographerName" />
+    <result column="photographer_success_times" jdbcType="INTEGER" property="photographerSuccessTimes" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <collection property="user" ofType="com.bean.User">
+      <id column="user_id" jdbcType="BIGINT" property="userId" />
+      <result column="phone_number" jdbcType="INTEGER" property="phoneNumber" />
+      <result column="email" jdbcType="VARCHAR" property="email" />
+    </collection>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    photographer_id, photographer_name, photographer_img_url, price, gender, id_number, 
+    works_id, user_id, attention_id, oreder_id, photographer_success_times, photographer_message_id
+  </sql>
+  <!--1管理者查询摄影师信息sql-->
+  <sql id="Manage_Photographers">
+    p.photographer_id, p.photographer_name, p.gender,p.photographer_success_times,
+    u.user_id,u.phone_number, u.email,
+  </sql>
+  <!--1.管理者查询摄影师显示-->
+  <select id="selectByPhotographerName" parameterType="java.lang.String" resultMap="ManagePhotographer">
+   SELECT
+   <include refid="Manage_Photographers"/>
+    FROM photographer p
+    LEFT JOIN user u
+    ON p.photographer_id=u.photographer_id
+    WHERE p.p.photographer_name=#{photographerName}
+  </select>
+
+  <select id="selectByExample" parameterType="com.bean.PhotographerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from photographer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from photographer
+    where photographer_id = #{photographerId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from photographer
+    where photographer_id = #{photographerId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bean.PhotographerExample">
+    delete from photographer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bean.Photographer">
+    insert into photographer (photographer_id, photographer_name, 
+      photographer_img_url, price, gender, 
+      id_number, works_id, user_id, 
+      attention_id, oreder_id, photographer_success_times, 
+      photographer_message_id)
+    values (#{photographerId,jdbcType=BIGINT}, #{photographerName,jdbcType=VARCHAR}, 
+      #{photographerImgUrl,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, #{gender,jdbcType=CHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{worksId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{attentionId,jdbcType=BIGINT}, #{orederId,jdbcType=BIGINT}, #{photographerSuccessTimes,jdbcType=INTEGER}, 
+      #{photographerMessageId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Photographer">
+    insert into photographer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="photographerId != null">
+        photographer_id,
+      </if>
+      <if test="photographerName != null">
+        photographer_name,
+      </if>
+      <if test="photographerImgUrl != null">
+        photographer_img_url,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="worksId != null">
+        works_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="attentionId != null">
+        attention_id,
+      </if>
+      <if test="orederId != null">
+        oreder_id,
+      </if>
+      <if test="photographerSuccessTimes != null">
+        photographer_success_times,
+      </if>
+      <if test="photographerMessageId != null">
+        photographer_message_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="photographerId != null">
+        #{photographerId,jdbcType=BIGINT},
+      </if>
+      <if test="photographerName != null">
+        #{photographerName,jdbcType=VARCHAR},
+      </if>
+      <if test="photographerImgUrl != null">
+        #{photographerImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="worksId != null">
+        #{worksId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="attentionId != null">
+        #{attentionId,jdbcType=BIGINT},
+      </if>
+      <if test="orederId != null">
+        #{orederId,jdbcType=BIGINT},
+      </if>
+      <if test="photographerSuccessTimes != null">
+        #{photographerSuccessTimes,jdbcType=INTEGER},
+      </if>
+      <if test="photographerMessageId != null">
+        #{photographerMessageId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bean.PhotographerExample" resultType="java.lang.Long">
+    select count(*) from photographer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update photographer
+    <set>
+      <if test="record.photographerId != null">
+        photographer_id = #{record.photographerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.photographerName != null">
+        photographer_name = #{record.photographerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photographerImgUrl != null">
+        photographer_img_url = #{record.photographerImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=INTEGER},
+      </if>
+      <if test="record.gender != null">
+        gender = #{record.gender,jdbcType=CHAR},
+      </if>
+      <if test="record.idNumber != null">
+        id_number = #{record.idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.worksId != null">
+        works_id = #{record.worksId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.attentionId != null">
+        attention_id = #{record.attentionId,jdbcType=BIGINT},
+      </if>
+      <if test="record.orederId != null">
+        oreder_id = #{record.orederId,jdbcType=BIGINT},
+      </if>
+      <if test="record.photographerSuccessTimes != null">
+        photographer_success_times = #{record.photographerSuccessTimes,jdbcType=INTEGER},
+      </if>
+      <if test="record.photographerMessageId != null">
+        photographer_message_id = #{record.photographerMessageId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update photographer
+    set photographer_id = #{record.photographerId,jdbcType=BIGINT},
+      photographer_name = #{record.photographerName,jdbcType=VARCHAR},
+      photographer_img_url = #{record.photographerImgUrl,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=INTEGER},
+      gender = #{record.gender,jdbcType=CHAR},
+      id_number = #{record.idNumber,jdbcType=VARCHAR},
+      works_id = #{record.worksId,jdbcType=BIGINT},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      attention_id = #{record.attentionId,jdbcType=BIGINT},
+      oreder_id = #{record.orederId,jdbcType=BIGINT},
+      photographer_success_times = #{record.photographerSuccessTimes,jdbcType=INTEGER},
+      photographer_message_id = #{record.photographerMessageId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Photographer">
+    update photographer
+    <set>
+      <if test="photographerName != null">
+        photographer_name = #{photographerName,jdbcType=VARCHAR},
+      </if>
+      <if test="photographerImgUrl != null">
+        photographer_img_url = #{photographerImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=INTEGER},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="worksId != null">
+        works_id = #{worksId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="attentionId != null">
+        attention_id = #{attentionId,jdbcType=BIGINT},
+      </if>
+      <if test="orederId != null">
+        oreder_id = #{orederId,jdbcType=BIGINT},
+      </if>
+      <if test="photographerSuccessTimes != null">
+        photographer_success_times = #{photographerSuccessTimes,jdbcType=INTEGER},
+      </if>
+      <if test="photographerMessageId != null">
+        photographer_message_id = #{photographerMessageId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where photographer_id = #{photographerId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Photographer">
+    update photographer
+    set photographer_name = #{photographerName,jdbcType=VARCHAR},
+      photographer_img_url = #{photographerImgUrl,jdbcType=VARCHAR},
+      price = #{price,jdbcType=INTEGER},
+      gender = #{gender,jdbcType=CHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      works_id = #{worksId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      attention_id = #{attentionId,jdbcType=BIGINT},
+      oreder_id = #{orederId,jdbcType=BIGINT},
+      photographer_success_times = #{photographerSuccessTimes,jdbcType=INTEGER},
+      photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
+    where photographer_id = #{photographerId,jdbcType=BIGINT}
+  </update>
+</mapper>

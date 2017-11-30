@@ -2,11 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.U_to_p_messageMapper">
   <resultMap id="BaseResultMap" type="com.bean.U_to_p_message">
-    <result column="photographer_message_id" jdbcType="BIGINT" property="photographerMessageId" />
+    <id column="photographer_message_id" jdbcType="BIGINT" property="photographerMessageId" />
     <result column="photographer_message_content" jdbcType="VARCHAR" property="photographerMessageContent" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="photographer_id" jdbcType="BIGINT" property="photographerId" />
     <result column="message_create" jdbcType="TIMESTAMP" property="messageCreate" />
+  </resultMap>
+  <!--1.摄影师，获取留言的结果集-->
+  <resultMap id="PGetMessages" type="com.bean.U_to_p_message">
+    <result column="photographer_message_id" jdbcType="BIGINT" property="photographerMessageId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,6 +74,13 @@
     photographer_message_id, photographer_message_content, user_id, photographer_id, 
     message_create
   </sql>
+
+  <!--1.摄影师获取信息发送的sql-->
+  <sql id="PGet_Messages_List">
+    photographer_message_id, photographer_id, photographer_message_content,  message_create,user_id,
+    user_name
+  </sql>
+
   <select id="selectByExample" parameterType="com.bean.U_to_p_messageExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -84,6 +95,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from u_to_p_message
+    where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from u_to_p_message
+    where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
+  </delete>
   <delete id="deleteByExample" parameterType="com.bean.U_to_p_messageExample">
     delete from u_to_p_message
     <if test="_parameter != null">
@@ -174,5 +195,31 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.U_to_p_message">
+    update u_to_p_message
+    <set>
+      <if test="photographerMessageContent != null">
+        photographer_message_content = #{photographerMessageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="photographerId != null">
+        photographer_id = #{photographerId,jdbcType=BIGINT},
+      </if>
+      <if test="messageCreate != null">
+        message_create = #{messageCreate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.U_to_p_message">
+    update u_to_p_message
+    set photographer_message_content = #{photographerMessageContent,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      photographer_id = #{photographerId,jdbcType=BIGINT},
+      message_create = #{messageCreate,jdbcType=TIMESTAMP}
+    where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
   </update>
 </mapper>

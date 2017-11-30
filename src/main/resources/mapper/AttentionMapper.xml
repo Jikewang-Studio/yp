@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.AttentionMapper">
   <resultMap id="BaseResultMap" type="com.bean.Attention">
-    <result column="attention_id" jdbcType="BIGINT" property="attentionId" />
+    <id column="attention_id" jdbcType="BIGINT" property="attentionId" />
     <result column="uer_id" jdbcType="VARCHAR" property="uerId" />
     <result column="attention_photographer_id" jdbcType="VARCHAR" property="attentionPhotographerId" />
   </resultMap>
@@ -81,6 +81,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from attention
+    where attention_id = #{attentionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from attention
+    where attention_id = #{attentionId,jdbcType=BIGINT}
+  </delete>
   <delete id="deleteByExample" parameterType="com.bean.AttentionExample">
     delete from attention
     <if test="_parameter != null">
@@ -149,5 +159,23 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Attention">
+    update attention
+    <set>
+      <if test="uerId != null">
+        uer_id = #{uerId,jdbcType=VARCHAR},
+      </if>
+      <if test="attentionPhotographerId != null">
+        attention_photographer_id = #{attentionPhotographerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where attention_id = #{attentionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Attention">
+    update attention
+    set uer_id = #{uerId,jdbcType=VARCHAR},
+      attention_photographer_id = #{attentionPhotographerId,jdbcType=VARCHAR}
+    where attention_id = #{attentionId,jdbcType=BIGINT}
   </update>
 </mapper>

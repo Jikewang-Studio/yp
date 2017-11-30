@@ -10,13 +10,21 @@ public interface AttentionMapper {
 
     int deleteByExample(AttentionExample example);
 
+    int deleteByPrimaryKey(Long attentionId);
+
     int insert(Attention record);
 
     int insertSelective(Attention record);
 
     List<Attention> selectByExample(AttentionExample example);
 
+    Attention selectByPrimaryKey(Long attentionId);
+
     int updateByExampleSelective(@Param("record") Attention record, @Param("example") AttentionExample example);
 
     int updateByExample(@Param("record") Attention record, @Param("example") AttentionExample example);
+
+    int updateByPrimaryKeySelective(Attention record);
+
+    int updateByPrimaryKey(Attention record);
 }

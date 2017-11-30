@@ -10,13 +10,21 @@ public interface Application_photographerMapper {
 
     int deleteByExample(Application_photographerExample example);
 
+    int deleteByPrimaryKey(Long applicationFormId);
+
     int insert(Application_photographer record);
 
     int insertSelective(Application_photographer record);
 
     List<Application_photographer> selectByExample(Application_photographerExample example);
 
+    Application_photographer selectByPrimaryKey(Long applicationFormId);
+
     int updateByExampleSelective(@Param("record") Application_photographer record, @Param("example") Application_photographerExample example);
 
     int updateByExample(@Param("record") Application_photographer record, @Param("example") Application_photographerExample example);
+
+    int updateByPrimaryKeySelective(Application_photographer record);
+
+    int updateByPrimaryKey(Application_photographer record);
 }

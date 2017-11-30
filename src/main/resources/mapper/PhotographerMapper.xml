@@ -27,6 +27,12 @@
       <result column="email" jdbcType="VARCHAR" property="email" />
     </collection>
   </resultMap>
+  <!--1管理者查询摄影师信息sql-->
+  <sql id="Manage_Photographers">
+    p.photographer_id, p.photographer_name, p.gender,p.photographer_success_times,
+    u.user_id,u.phone_number, u.email,
+  </sql>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -89,15 +95,11 @@
     photographer_id, photographer_name, photographer_img_url, price, gender, id_number, 
     works_id, user_id, attention_id, oreder_id, photographer_success_times, photographer_message_id
   </sql>
-  <!--1管理者查询摄影师信息sql-->
-  <sql id="Manage_Photographers">
-    p.photographer_id, p.photographer_name, p.gender,p.photographer_success_times,
-    u.user_id,u.phone_number, u.email,
-  </sql>
   <!--1.管理者查询摄影师显示-->
+  <!--List<Photographer> selectByPhotographerName(String photographerName);-->
   <select id="selectByPhotographerName" parameterType="java.lang.String" resultMap="ManagePhotographer">
-   SELECT
-   <include refid="Manage_Photographers"/>
+    SELECT
+    <include refid="Manage_Photographers"/>
     FROM photographer p
     LEFT JOIN user u
     ON p.photographer_id=u.photographer_id

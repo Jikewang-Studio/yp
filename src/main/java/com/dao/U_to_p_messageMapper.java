@@ -10,13 +10,21 @@ public interface U_to_p_messageMapper {
 
     int deleteByExample(U_to_p_messageExample example);
 
+    int deleteByPrimaryKey(Long photographerMessageId);
+
     int insert(U_to_p_message record);
 
     int insertSelective(U_to_p_message record);
 
     List<U_to_p_message> selectByExample(U_to_p_messageExample example);
 
+    U_to_p_message selectByPrimaryKey(Long photographerMessageId);
+
     int updateByExampleSelective(@Param("record") U_to_p_message record, @Param("example") U_to_p_messageExample example);
 
     int updateByExample(@Param("record") U_to_p_message record, @Param("example") U_to_p_messageExample example);
+
+    int updateByPrimaryKeySelective(U_to_p_message record);
+
+    int updateByPrimaryKey(U_to_p_message record);
 }

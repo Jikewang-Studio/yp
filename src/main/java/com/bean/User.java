@@ -27,25 +27,6 @@ public class User {
 
     private Long attentionId;
 
-    public User() {
-    }
-
-    public User(String userName, String password, Integer phoneNumber, String email) {
-        this.userName = userName;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userName='" + userName + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", email='" + email + '\'' +
-                '}';
-    }
-
     public Long getUserId() {
         return userId;
     }

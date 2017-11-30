@@ -19,12 +19,12 @@ public interface PhotographerMapper {
     int insertSelective(Photographer record);
 
     List<Photographer> selectByExample(PhotographerExample example);
-    //1.管理者通过摄影师名字查找到摄影师
-    List<Photographer> selectByPhotographerName(String photographerName);
 
     Photographer selectByPrimaryKey(Long photographerId);
 
     int updateByExampleSelective(@Param("record") Photographer record, @Param("example") PhotographerExample example);
+    //1.管理者通过摄影师名字查找到摄影师
+    List<Photographer> selectByPhotographerName(String photographerName);
 
     int updateByExample(@Param("record") Photographer record, @Param("example") PhotographerExample example);
 

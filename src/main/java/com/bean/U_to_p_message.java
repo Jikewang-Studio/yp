@@ -13,6 +13,17 @@ public class U_to_p_message {
 
     private Date messageCreate;
 
+    private String userName;
+
+    @Override
+    public String toString() {
+        return "U_to_p_message{" +
+                "photographerMessageContent='" + photographerMessageContent + '\'' +
+                ", messageCreate=" + messageCreate +
+                ", userName='" + userName + '\'' +
+                '}';
+    }
+
     public Long getPhotographerMessageId() {
         return photographerMessageId;
     }
@@ -42,6 +53,7 @@ public class U_to_p_message {
     }
 
     public void setPhotographerId(Long photographerId) {
+        System.out.println("get photographerId");
         this.photographerId = photographerId;
     }
 
@@ -51,5 +63,13 @@ public class U_to_p_message {
 
     public void setMessageCreate(Date messageCreate) {
         this.messageCreate = messageCreate;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 }

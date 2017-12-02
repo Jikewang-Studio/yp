@@ -314,52 +314,52 @@ public class PhotographerExample {
             return (Criteria) this;
         }
 
-        public Criteria andPriceEqualTo(Integer value) {
+        public Criteria andPriceEqualTo(Double value) {
             addCriterion("price =", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotEqualTo(Integer value) {
+        public Criteria andPriceNotEqualTo(Double value) {
             addCriterion("price <>", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThan(Integer value) {
+        public Criteria andPriceGreaterThan(Double value) {
             addCriterion("price >", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceGreaterThanOrEqualTo(Integer value) {
+        public Criteria andPriceGreaterThanOrEqualTo(Double value) {
             addCriterion("price >=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThan(Integer value) {
+        public Criteria andPriceLessThan(Double value) {
             addCriterion("price <", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceLessThanOrEqualTo(Integer value) {
+        public Criteria andPriceLessThanOrEqualTo(Double value) {
             addCriterion("price <=", value, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceIn(List<Integer> values) {
+        public Criteria andPriceIn(List<Double> values) {
             addCriterion("price in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotIn(List<Integer> values) {
+        public Criteria andPriceNotIn(List<Double> values) {
             addCriterion("price not in", values, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceBetween(Integer value1, Integer value2) {
+        public Criteria andPriceBetween(Double value1, Double value2) {
             addCriterion("price between", value1, value2, "price");
             return (Criteria) this;
         }
 
-        public Criteria andPriceNotBetween(Integer value1, Integer value2) {
+        public Criteria andPriceNotBetween(Double value1, Double value2) {
             addCriterion("price not between", value1, value2, "price");
             return (Criteria) this;
         }
@@ -504,66 +504,6 @@ public class PhotographerExample {
             return (Criteria) this;
         }
 
-        public Criteria andWorksIdIsNull() {
-            addCriterion("works_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWorksIdIsNotNull() {
-            addCriterion("works_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWorksIdEqualTo(Long value) {
-            addCriterion("works_id =", value, "worksId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWorksIdNotEqualTo(Long value) {
-            addCriterion("works_id <>", value, "worksId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWorksIdGreaterThan(Long value) {
-            addCriterion("works_id >", value, "worksId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWorksIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("works_id >=", value, "worksId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWorksIdLessThan(Long value) {
-            addCriterion("works_id <", value, "worksId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWorksIdLessThanOrEqualTo(Long value) {
-            addCriterion("works_id <=", value, "worksId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWorksIdIn(List<Long> values) {
-            addCriterion("works_id in", values, "worksId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWorksIdNotIn(List<Long> values) {
-            addCriterion("works_id not in", values, "worksId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWorksIdBetween(Long value1, Long value2) {
-            addCriterion("works_id between", value1, value2, "worksId");
-            return (Criteria) this;
-        }
-
-        public Criteria andWorksIdNotBetween(Long value1, Long value2) {
-            addCriterion("works_id not between", value1, value2, "worksId");
-            return (Criteria) this;
-        }
-
         public Criteria andUserIdIsNull() {
             addCriterion("user_id is null");
             return (Criteria) this;
@@ -621,126 +561,6 @@ public class PhotographerExample {
 
         public Criteria andUserIdNotBetween(Long value1, Long value2) {
             addCriterion("user_id not between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAttentionIdIsNull() {
-            addCriterion("attention_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAttentionIdIsNotNull() {
-            addCriterion("attention_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAttentionIdEqualTo(Long value) {
-            addCriterion("attention_id =", value, "attentionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAttentionIdNotEqualTo(Long value) {
-            addCriterion("attention_id <>", value, "attentionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAttentionIdGreaterThan(Long value) {
-            addCriterion("attention_id >", value, "attentionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAttentionIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("attention_id >=", value, "attentionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAttentionIdLessThan(Long value) {
-            addCriterion("attention_id <", value, "attentionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAttentionIdLessThanOrEqualTo(Long value) {
-            addCriterion("attention_id <=", value, "attentionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAttentionIdIn(List<Long> values) {
-            addCriterion("attention_id in", values, "attentionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAttentionIdNotIn(List<Long> values) {
-            addCriterion("attention_id not in", values, "attentionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAttentionIdBetween(Long value1, Long value2) {
-            addCriterion("attention_id between", value1, value2, "attentionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andAttentionIdNotBetween(Long value1, Long value2) {
-            addCriterion("attention_id not between", value1, value2, "attentionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrederIdIsNull() {
-            addCriterion("oreder_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrederIdIsNotNull() {
-            addCriterion("oreder_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrederIdEqualTo(Long value) {
-            addCriterion("oreder_id =", value, "orederId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrederIdNotEqualTo(Long value) {
-            addCriterion("oreder_id <>", value, "orederId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrederIdGreaterThan(Long value) {
-            addCriterion("oreder_id >", value, "orederId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrederIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("oreder_id >=", value, "orederId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrederIdLessThan(Long value) {
-            addCriterion("oreder_id <", value, "orederId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrederIdLessThanOrEqualTo(Long value) {
-            addCriterion("oreder_id <=", value, "orederId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrederIdIn(List<Long> values) {
-            addCriterion("oreder_id in", values, "orederId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrederIdNotIn(List<Long> values) {
-            addCriterion("oreder_id not in", values, "orederId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrederIdBetween(Long value1, Long value2) {
-            addCriterion("oreder_id between", value1, value2, "orederId");
-            return (Criteria) this;
-        }
-
-        public Criteria andOrederIdNotBetween(Long value1, Long value2) {
-            addCriterion("oreder_id not between", value1, value2, "orederId");
             return (Criteria) this;
         }
 
@@ -804,63 +624,63 @@ public class PhotographerExample {
             return (Criteria) this;
         }
 
-        public Criteria andPhotographerMessageIdIsNull() {
-            addCriterion("photographer_message_id is null");
+        public Criteria andPhotographerStateIsNull() {
+            addCriterion("photographer_state is null");
             return (Criteria) this;
         }
 
-        public Criteria andPhotographerMessageIdIsNotNull() {
-            addCriterion("photographer_message_id is not null");
+        public Criteria andPhotographerStateIsNotNull() {
+            addCriterion("photographer_state is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPhotographerMessageIdEqualTo(Long value) {
-            addCriterion("photographer_message_id =", value, "photographerMessageId");
+        public Criteria andPhotographerStateEqualTo(Integer value) {
+            addCriterion("photographer_state =", value, "photographerState");
             return (Criteria) this;
         }
 
-        public Criteria andPhotographerMessageIdNotEqualTo(Long value) {
-            addCriterion("photographer_message_id <>", value, "photographerMessageId");
+        public Criteria andPhotographerStateNotEqualTo(Integer value) {
+            addCriterion("photographer_state <>", value, "photographerState");
             return (Criteria) this;
         }
 
-        public Criteria andPhotographerMessageIdGreaterThan(Long value) {
-            addCriterion("photographer_message_id >", value, "photographerMessageId");
+        public Criteria andPhotographerStateGreaterThan(Integer value) {
+            addCriterion("photographer_state >", value, "photographerState");
             return (Criteria) this;
         }
 
-        public Criteria andPhotographerMessageIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("photographer_message_id >=", value, "photographerMessageId");
+        public Criteria andPhotographerStateGreaterThanOrEqualTo(Integer value) {
+            addCriterion("photographer_state >=", value, "photographerState");
             return (Criteria) this;
         }
 
-        public Criteria andPhotographerMessageIdLessThan(Long value) {
-            addCriterion("photographer_message_id <", value, "photographerMessageId");
+        public Criteria andPhotographerStateLessThan(Integer value) {
+            addCriterion("photographer_state <", value, "photographerState");
             return (Criteria) this;
         }
 
-        public Criteria andPhotographerMessageIdLessThanOrEqualTo(Long value) {
-            addCriterion("photographer_message_id <=", value, "photographerMessageId");
+        public Criteria andPhotographerStateLessThanOrEqualTo(Integer value) {
+            addCriterion("photographer_state <=", value, "photographerState");
             return (Criteria) this;
         }
 
-        public Criteria andPhotographerMessageIdIn(List<Long> values) {
-            addCriterion("photographer_message_id in", values, "photographerMessageId");
+        public Criteria andPhotographerStateIn(List<Integer> values) {
+            addCriterion("photographer_state in", values, "photographerState");
             return (Criteria) this;
         }
 
-        public Criteria andPhotographerMessageIdNotIn(List<Long> values) {
-            addCriterion("photographer_message_id not in", values, "photographerMessageId");
+        public Criteria andPhotographerStateNotIn(List<Integer> values) {
+            addCriterion("photographer_state not in", values, "photographerState");
             return (Criteria) this;
         }
 
-        public Criteria andPhotographerMessageIdBetween(Long value1, Long value2) {
-            addCriterion("photographer_message_id between", value1, value2, "photographerMessageId");
+        public Criteria andPhotographerStateBetween(Integer value1, Integer value2) {
+            addCriterion("photographer_state between", value1, value2, "photographerState");
             return (Criteria) this;
         }
 
-        public Criteria andPhotographerMessageIdNotBetween(Long value1, Long value2) {
-            addCriterion("photographer_message_id not between", value1, value2, "photographerMessageId");
+        public Criteria andPhotographerStateNotBetween(Integer value1, Integer value2) {
+            addCriterion("photographer_state not between", value1, value2, "photographerState");
             return (Criteria) this;
         }
     }

@@ -414,6 +414,76 @@ public class P_to_u_messageExample {
             addCriterion("message_create not between", value1, value2, "messageCreate");
             return (Criteria) this;
         }
+
+        public Criteria andPhotographerNameIsNull() {
+            addCriterion("photographer_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotographerNameIsNotNull() {
+            addCriterion("photographer_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotographerNameEqualTo(String value) {
+            addCriterion("photographer_name =", value, "photographerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotographerNameNotEqualTo(String value) {
+            addCriterion("photographer_name <>", value, "photographerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotographerNameGreaterThan(String value) {
+            addCriterion("photographer_name >", value, "photographerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotographerNameGreaterThanOrEqualTo(String value) {
+            addCriterion("photographer_name >=", value, "photographerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotographerNameLessThan(String value) {
+            addCriterion("photographer_name <", value, "photographerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotographerNameLessThanOrEqualTo(String value) {
+            addCriterion("photographer_name <=", value, "photographerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotographerNameLike(String value) {
+            addCriterion("photographer_name like", value, "photographerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotographerNameNotLike(String value) {
+            addCriterion("photographer_name not like", value, "photographerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotographerNameIn(List<String> values) {
+            addCriterion("photographer_name in", values, "photographerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotographerNameNotIn(List<String> values) {
+            addCriterion("photographer_name not in", values, "photographerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotographerNameBetween(String value1, String value2) {
+            addCriterion("photographer_name between", value1, value2, "photographerName");
+            return (Criteria) this;
+        }
+
+        public Criteria andPhotographerNameNotBetween(String value1, String value2) {
+            addCriterion("photographer_name not between", value1, value2, "photographerName");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

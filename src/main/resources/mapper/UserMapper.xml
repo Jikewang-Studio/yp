@@ -7,16 +7,11 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="user_img_url" jdbcType="VARCHAR" property="userImgUrl" />
     <result column="phone_number" jdbcType="INTEGER" property="phoneNumber" />
-    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="user_status" jdbcType="INTEGER" property="userStatus" />
     <result column="photographer_id" jdbcType="BIGINT" property="photographerId" />
-    <result column="order_id" jdbcType="BIGINT" property="orderId" />
     <result column="user_success_times" jdbcType="INTEGER" property="userSuccessTimes" />
-    <result column="user_message_id" jdbcType="BIGINT" property="userMessageId" />
-    <result column="attention_id" jdbcType="BIGINT" property="attentionId" />
   </resultMap>
-
   <!--1.管理者界面用户信息结果集-->
   <resultMap id="ManageUsers" type="com.bean.User">
     <id column="user_id" jdbcType="BIGINT" property="userId" />
@@ -31,6 +26,15 @@
     <result column="phone_number" jdbcType="INTEGER" property="phoneNumber" />
     <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
+
+  <!--1.管理员查询用户信息sql-->
+  <sql id="Manage_Users">
+    user_name,phone_number,email,user_success_times
+  </sql>
+  <!--2.用户登录验证sql-->
+  <sql id="User_Login">
+    user_id ,phone_number, password
+  </sql>
 
   <sql id="Example_Where_Clause">
     <where>
@@ -91,16 +95,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    user_id, user_name, password, user_img_url, phone_number, id_number, email, user_status, 
-    photographer_id, order_id, user_success_times, user_message_id, attention_id
-  </sql>
-  <!--1.管理员查询用户信息sql-->
-  <sql id="Manage_Users">
-    user_name,phone_number,email,user_success_times
-  </sql>
-  <!--2.用户登录验证sql-->
-  <sql id="User_Login">
-    user_id ,phone_number, password
+    user_id, user_name, password, user_img_url, phone_number, email, user_status, photographer_id, 
+    user_success_times
   </sql>
 
   <!--1.管理员用名字模糊查询-->
@@ -154,15 +150,13 @@
   </delete>
   <insert id="insert" parameterType="com.bean.User">
     insert into user (user_id, user_name, password, 
-      user_img_url, phone_number, id_number, 
-      email, user_status, photographer_id, 
-      order_id, user_success_times, user_message_id, 
-      attention_id)
+      user_img_url, phone_number, email, 
+      user_status, photographer_id, user_success_times
+      )
     values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{userImgUrl,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=INTEGER}, #{idNumber,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{userStatus,jdbcType=INTEGER}, #{photographerId,jdbcType=BIGINT}, 
-      #{orderId,jdbcType=BIGINT}, #{userSuccessTimes,jdbcType=INTEGER}, #{userMessageId,jdbcType=BIGINT}, 
-      #{attentionId,jdbcType=BIGINT})
+      #{userImgUrl,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
+      #{userStatus,jdbcType=INTEGER}, #{photographerId,jdbcType=BIGINT}, #{userSuccessTimes,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.bean.User">
     insert into user
@@ -182,9 +176,6 @@
       <if test="phoneNumber != null">
         phone_number,
       </if>
-      <if test="idNumber != null">
-        id_number,
-      </if>
       <if test="email != null">
         email,
       </if>
@@ -194,17 +185,8 @@
       <if test="photographerId != null">
         photographer_id,
       </if>
-      <if test="orderId != null">
-        order_id,
-      </if>
       <if test="userSuccessTimes != null">
         user_success_times,
-      </if>
-      <if test="userMessageId != null">
-        user_message_id,
-      </if>
-      <if test="attentionId != null">
-        attention_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -223,9 +205,6 @@
       <if test="phoneNumber != null">
         #{phoneNumber,jdbcType=INTEGER},
       </if>
-      <if test="idNumber != null">
-        #{idNumber,jdbcType=VARCHAR},
-      </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
@@ -235,17 +214,8 @@
       <if test="photographerId != null">
         #{photographerId,jdbcType=BIGINT},
       </if>
-      <if test="orderId != null">
-        #{orderId,jdbcType=BIGINT},
-      </if>
       <if test="userSuccessTimes != null">
         #{userSuccessTimes,jdbcType=INTEGER},
-      </if>
-      <if test="userMessageId != null">
-        #{userMessageId,jdbcType=BIGINT},
-      </if>
-      <if test="attentionId != null">
-        #{attentionId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -273,9 +243,6 @@
       <if test="record.phoneNumber != null">
         phone_number = #{record.phoneNumber,jdbcType=INTEGER},
       </if>
-      <if test="record.idNumber != null">
-        id_number = #{record.idNumber,jdbcType=VARCHAR},
-      </if>
       <if test="record.email != null">
         email = #{record.email,jdbcType=VARCHAR},
       </if>
@@ -285,17 +252,8 @@
       <if test="record.photographerId != null">
         photographer_id = #{record.photographerId,jdbcType=BIGINT},
       </if>
-      <if test="record.orderId != null">
-        order_id = #{record.orderId,jdbcType=BIGINT},
-      </if>
       <if test="record.userSuccessTimes != null">
         user_success_times = #{record.userSuccessTimes,jdbcType=INTEGER},
-      </if>
-      <if test="record.userMessageId != null">
-        user_message_id = #{record.userMessageId,jdbcType=BIGINT},
-      </if>
-      <if test="record.attentionId != null">
-        attention_id = #{record.attentionId,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -309,14 +267,10 @@
       password = #{record.password,jdbcType=VARCHAR},
       user_img_url = #{record.userImgUrl,jdbcType=VARCHAR},
       phone_number = #{record.phoneNumber,jdbcType=INTEGER},
-      id_number = #{record.idNumber,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       user_status = #{record.userStatus,jdbcType=INTEGER},
       photographer_id = #{record.photographerId,jdbcType=BIGINT},
-      order_id = #{record.orderId,jdbcType=BIGINT},
-      user_success_times = #{record.userSuccessTimes,jdbcType=INTEGER},
-      user_message_id = #{record.userMessageId,jdbcType=BIGINT},
-      attention_id = #{record.attentionId,jdbcType=BIGINT}
+      user_success_times = #{record.userSuccessTimes,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -336,9 +290,6 @@
       <if test="phoneNumber != null">
         phone_number = #{phoneNumber,jdbcType=INTEGER},
       </if>
-      <if test="idNumber != null">
-        id_number = #{idNumber,jdbcType=VARCHAR},
-      </if>
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
@@ -348,17 +299,8 @@
       <if test="photographerId != null">
         photographer_id = #{photographerId,jdbcType=BIGINT},
       </if>
-      <if test="orderId != null">
-        order_id = #{orderId,jdbcType=BIGINT},
-      </if>
       <if test="userSuccessTimes != null">
         user_success_times = #{userSuccessTimes,jdbcType=INTEGER},
-      </if>
-      <if test="userMessageId != null">
-        user_message_id = #{userMessageId,jdbcType=BIGINT},
-      </if>
-      <if test="attentionId != null">
-        attention_id = #{attentionId,jdbcType=BIGINT},
       </if>
     </set>
     where user_id = #{userId,jdbcType=BIGINT}
@@ -369,14 +311,10 @@
       password = #{password,jdbcType=VARCHAR},
       user_img_url = #{userImgUrl,jdbcType=VARCHAR},
       phone_number = #{phoneNumber,jdbcType=INTEGER},
-      id_number = #{idNumber,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       user_status = #{userStatus,jdbcType=INTEGER},
       photographer_id = #{photographerId,jdbcType=BIGINT},
-      order_id = #{orderId,jdbcType=BIGINT},
-      user_success_times = #{userSuccessTimes,jdbcType=INTEGER},
-      user_message_id = #{userMessageId,jdbcType=BIGINT},
-      attention_id = #{attentionId,jdbcType=BIGINT}
+      user_success_times = #{userSuccessTimes,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
 </mapper>

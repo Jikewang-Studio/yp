@@ -11,21 +11,23 @@ public class User {
 
     private Integer phoneNumber;
 
-    private String idNumber;
-
     private String email;
 
     private Integer userStatus;
 
     private Long photographerId;
 
-    private Long orderId;
-
     private Integer userSuccessTimes;
 
-    private Long userMessageId;
+    public User() {
+    }
 
-    private Long attentionId;
+    public User(String userName, String password, Integer phoneNumber, String email) {
+        this.userName = userName;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 
     public Long getUserId() {
         return userId;
@@ -67,14 +69,6 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber == null ? null : idNumber.trim();
-    }
-
     public String getEmail() {
         return email;
     }
@@ -99,14 +93,6 @@ public class User {
         this.photographerId = photographerId;
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
     public Integer getUserSuccessTimes() {
         return userSuccessTimes;
     }
@@ -115,19 +101,17 @@ public class User {
         this.userSuccessTimes = userSuccessTimes;
     }
 
-    public Long getUserMessageId() {
-        return userMessageId;
-    }
-
-    public void setUserMessageId(Long userMessageId) {
-        this.userMessageId = userMessageId;
-    }
-
-    public Long getAttentionId() {
-        return attentionId;
-    }
-
-    public void setAttentionId(Long attentionId) {
-        this.attentionId = attentionId;
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", userImgUrl='" + userImgUrl + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", email='" + email + '\'' +
+                ", userStatus=" + userStatus +
+                ", photographerId=" + photographerId +
+                ", userSuccessTimes=" + userSuccessTimes +
+                '}';
     }
 }

@@ -7,23 +7,17 @@ public class Photographer {
 
     private String photographerImgUrl;
 
-    private Integer price;
+    private Double price;
 
     private String gender;
 
     private String idNumber;
 
-    private Long worksId;
-
     private Long userId;
-
-    private Long attentionId;
-
-    private Long orederId;
 
     private Integer photographerSuccessTimes;
 
-    private Long photographerMessageId;
+    private Integer photographerState;
 
     public Long getPhotographerId() {
         return photographerId;
@@ -49,11 +43,11 @@ public class Photographer {
         this.photographerImgUrl = photographerImgUrl == null ? null : photographerImgUrl.trim();
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -73,36 +67,12 @@ public class Photographer {
         this.idNumber = idNumber == null ? null : idNumber.trim();
     }
 
-    public Long getWorksId() {
-        return worksId;
-    }
-
-    public void setWorksId(Long worksId) {
-        this.worksId = worksId;
-    }
-
     public Long getUserId() {
         return userId;
     }
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public Long getAttentionId() {
-        return attentionId;
-    }
-
-    public void setAttentionId(Long attentionId) {
-        this.attentionId = attentionId;
-    }
-
-    public Long getOrederId() {
-        return orederId;
-    }
-
-    public void setOrederId(Long orederId) {
-        this.orederId = orederId;
     }
 
     public Integer getPhotographerSuccessTimes() {
@@ -113,11 +83,11 @@ public class Photographer {
         this.photographerSuccessTimes = photographerSuccessTimes;
     }
 
-    public Long getPhotographerMessageId() {
-        return photographerMessageId;
+    public Integer getPhotographerState() {
+        return photographerState;
     }
 
-    public void setPhotographerMessageId(Long photographerMessageId) {
-        this.photographerMessageId = photographerMessageId;
+    public void setPhotographerState(Integer photographerState) {
+        this.photographerState = photographerState;
     }
 }

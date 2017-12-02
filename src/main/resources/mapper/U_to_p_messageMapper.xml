@@ -7,11 +7,22 @@
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="photographer_id" jdbcType="BIGINT" property="photographerId" />
     <result column="message_create" jdbcType="TIMESTAMP" property="messageCreate" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
   </resultMap>
   <!--1.摄影师，获取留言的结果集-->
   <resultMap id="PGetMessages" type="com.bean.U_to_p_message">
-    <result column="photographer_message_id" jdbcType="BIGINT" property="photographerMessageId" />
+    <id column="photographer_message_id" jdbcType="BIGINT" property="photographerMessageId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="photographer_message_content" jdbcType="VARCHAR" property="photographerMessageContent" />
+    <result column="message_create" jdbcType="TIMESTAMP" property="messageCreate" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
   </resultMap>
+  <!--1.摄影师获取信息发送的sql-->
+  <sql id="PGet_Messages_List">
+       p.photographer_message_id, p.photographer_message_content,  p.message_create,p.user_id,
+        u.user_name
+    </sql>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -71,155 +82,23 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    photographer_message_id, photographer_message_content, user_id, photographer_id, 
-    message_create
+    photographer_message_id, photographer_message_content, user_id, photographer_id,
+    message_create, user_name
   </sql>
-
-  <!--1.摄影师获取信息发送的sql-->
-  <sql id="PGet_Messages_List">
-    photographer_message_id, photographer_id, photographer_message_content,  message_create,user_id,
-    user_name
-  </sql>
-
-  <select id="selectByExample" parameterType="com.bean.U_to_p_messageExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from u_to_p_message
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
+  <!--//1.获取到用户给摄影师留言的实体集合-->
+  <!--public List<U_to_p_messages> selectByPhotographerId(Long photographerId);-->
+  <select id="selectByPhotographerId" parameterType="long" resultMap="PGetMessages">
+    SELECT
+    <include refid="PGet_Messages_List"/>
+    FROM
+    `user` u INNER JOIN u_to_p_message p ON u.user_id=p.user_id
+    AND p.photographer_id=#{photographerId};
   </select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from u_to_p_message
     where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from u_to_p_message
-    where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.bean.U_to_p_messageExample">
-    delete from u_to_p_message
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.bean.U_to_p_message">
-    insert into u_to_p_message (photographer_message_id, photographer_message_content, 
-      user_id, photographer_id, message_create
-      )
-    values (#{photographerMessageId,jdbcType=BIGINT}, #{photographerMessageContent,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=BIGINT}, #{photographerId,jdbcType=BIGINT}, #{messageCreate,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.bean.U_to_p_message">
-    insert into u_to_p_message
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="photographerMessageId != null">
-        photographer_message_id,
-      </if>
-      <if test="photographerMessageContent != null">
-        photographer_message_content,
-      </if>
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="photographerId != null">
-        photographer_id,
-      </if>
-      <if test="messageCreate != null">
-        message_create,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="photographerMessageId != null">
-        #{photographerMessageId,jdbcType=BIGINT},
-      </if>
-      <if test="photographerMessageContent != null">
-        #{photographerMessageContent,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="photographerId != null">
-        #{photographerId,jdbcType=BIGINT},
-      </if>
-      <if test="messageCreate != null">
-        #{messageCreate,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.bean.U_to_p_messageExample" resultType="java.lang.Long">
-    select count(*) from u_to_p_message
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update u_to_p_message
-    <set>
-      <if test="record.photographerMessageId != null">
-        photographer_message_id = #{record.photographerMessageId,jdbcType=BIGINT},
-      </if>
-      <if test="record.photographerMessageContent != null">
-        photographer_message_content = #{record.photographerMessageContent,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=BIGINT},
-      </if>
-      <if test="record.photographerId != null">
-        photographer_id = #{record.photographerId,jdbcType=BIGINT},
-      </if>
-      <if test="record.messageCreate != null">
-        message_create = #{record.messageCreate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update u_to_p_message
-    set photographer_message_id = #{record.photographerMessageId,jdbcType=BIGINT},
-      photographer_message_content = #{record.photographerMessageContent,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=BIGINT},
-      photographer_id = #{record.photographerId,jdbcType=BIGINT},
-      message_create = #{record.messageCreate,jdbcType=TIMESTAMP}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bean.U_to_p_message">
-    update u_to_p_message
-    <set>
-      <if test="photographerMessageContent != null">
-        photographer_message_content = #{photographerMessageContent,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="photographerId != null">
-        photographer_id = #{photographerId,jdbcType=BIGINT},
-      </if>
-      <if test="messageCreate != null">
-        message_create = #{messageCreate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.bean.U_to_p_message">
-    update u_to_p_message
-    set photographer_message_content = #{photographerMessageContent,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=BIGINT},
-      photographer_id = #{photographerId,jdbcType=BIGINT},
-      message_create = #{messageCreate,jdbcType=TIMESTAMP}
-    where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
-  </update>
 </mapper>

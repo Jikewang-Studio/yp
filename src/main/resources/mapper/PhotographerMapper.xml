@@ -5,34 +5,13 @@
     <id column="photographer_id" jdbcType="BIGINT" property="photographerId" />
     <result column="photographer_name" jdbcType="VARCHAR" property="photographerName" />
     <result column="photographer_img_url" jdbcType="VARCHAR" property="photographerImgUrl" />
-    <result column="price" jdbcType="INTEGER" property="price" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="gender" jdbcType="CHAR" property="gender" />
     <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
-    <result column="works_id" jdbcType="BIGINT" property="worksId" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="attention_id" jdbcType="BIGINT" property="attentionId" />
-    <result column="oreder_id" jdbcType="BIGINT" property="orederId" />
     <result column="photographer_success_times" jdbcType="INTEGER" property="photographerSuccessTimes" />
-    <result column="photographer_message_id" jdbcType="BIGINT" property="photographerMessageId" />
+    <result column="photographer_state" jdbcType="INTEGER" property="photographerState" />
   </resultMap>
-  <!--2.管理者，要管理的摄影师信息-->
-  <resultMap id="ManagePhotographer" type="com.bean.Photographer">
-    <id column="photographer_id" jdbcType="BIGINT" property="photographerId" />
-    <result column="photographer_name" jdbcType="VARCHAR" property="photographerName" />
-    <result column="photographer_success_times" jdbcType="INTEGER" property="photographerSuccessTimes" />
-    <result column="gender" jdbcType="CHAR" property="gender" />
-    <collection property="user" ofType="com.bean.User">
-      <id column="user_id" jdbcType="BIGINT" property="userId" />
-      <result column="phone_number" jdbcType="INTEGER" property="phoneNumber" />
-      <result column="email" jdbcType="VARCHAR" property="email" />
-    </collection>
-  </resultMap>
-  <!--1管理者查询摄影师信息sql-->
-  <sql id="Manage_Photographers">
-    p.photographer_id, p.photographer_name, p.gender,p.photographer_success_times,
-    u.user_id,u.phone_number, u.email,
-  </sql>
-
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -93,19 +72,8 @@
   </sql>
   <sql id="Base_Column_List">
     photographer_id, photographer_name, photographer_img_url, price, gender, id_number, 
-    works_id, user_id, attention_id, oreder_id, photographer_success_times, photographer_message_id
+    user_id, photographer_success_times, photographer_state
   </sql>
-  <!--1.管理者查询摄影师显示-->
-  <!--List<Photographer> selectByPhotographerName(String photographerName);-->
-  <select id="selectByPhotographerName" parameterType="java.lang.String" resultMap="ManagePhotographer">
-    SELECT
-    <include refid="Manage_Photographers"/>
-    FROM photographer p
-    LEFT JOIN user u
-    ON p.photographer_id=u.photographer_id
-    WHERE p.p.photographer_name=#{photographerName}
-  </select>
-
   <select id="selectByExample" parameterType="com.bean.PhotographerExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -139,14 +107,12 @@
   <insert id="insert" parameterType="com.bean.Photographer">
     insert into photographer (photographer_id, photographer_name, 
       photographer_img_url, price, gender, 
-      id_number, works_id, user_id, 
-      attention_id, oreder_id, photographer_success_times, 
-      photographer_message_id)
+      id_number, user_id, photographer_success_times, 
+      photographer_state)
     values (#{photographerId,jdbcType=BIGINT}, #{photographerName,jdbcType=VARCHAR}, 
-      #{photographerImgUrl,jdbcType=VARCHAR}, #{price,jdbcType=INTEGER}, #{gender,jdbcType=CHAR}, 
-      #{idNumber,jdbcType=VARCHAR}, #{worksId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
-      #{attentionId,jdbcType=BIGINT}, #{orederId,jdbcType=BIGINT}, #{photographerSuccessTimes,jdbcType=INTEGER}, 
-      #{photographerMessageId,jdbcType=BIGINT})
+      #{photographerImgUrl,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{gender,jdbcType=CHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{photographerSuccessTimes,jdbcType=INTEGER}, 
+      #{photographerState,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Photographer">
     insert into photographer
@@ -169,23 +135,14 @@
       <if test="idNumber != null">
         id_number,
       </if>
-      <if test="worksId != null">
-        works_id,
-      </if>
       <if test="userId != null">
         user_id,
-      </if>
-      <if test="attentionId != null">
-        attention_id,
-      </if>
-      <if test="orederId != null">
-        oreder_id,
       </if>
       <if test="photographerSuccessTimes != null">
         photographer_success_times,
       </if>
-      <if test="photographerMessageId != null">
-        photographer_message_id,
+      <if test="photographerState != null">
+        photographer_state,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -199,7 +156,7 @@
         #{photographerImgUrl,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        #{price,jdbcType=INTEGER},
+        #{price,jdbcType=DOUBLE},
       </if>
       <if test="gender != null">
         #{gender,jdbcType=CHAR},
@@ -207,23 +164,14 @@
       <if test="idNumber != null">
         #{idNumber,jdbcType=VARCHAR},
       </if>
-      <if test="worksId != null">
-        #{worksId,jdbcType=BIGINT},
-      </if>
       <if test="userId != null">
         #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="attentionId != null">
-        #{attentionId,jdbcType=BIGINT},
-      </if>
-      <if test="orederId != null">
-        #{orederId,jdbcType=BIGINT},
       </if>
       <if test="photographerSuccessTimes != null">
         #{photographerSuccessTimes,jdbcType=INTEGER},
       </if>
-      <if test="photographerMessageId != null">
-        #{photographerMessageId,jdbcType=BIGINT},
+      <if test="photographerState != null">
+        #{photographerState,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -246,7 +194,7 @@
         photographer_img_url = #{record.photographerImgUrl,jdbcType=VARCHAR},
       </if>
       <if test="record.price != null">
-        price = #{record.price,jdbcType=INTEGER},
+        price = #{record.price,jdbcType=DOUBLE},
       </if>
       <if test="record.gender != null">
         gender = #{record.gender,jdbcType=CHAR},
@@ -254,23 +202,14 @@
       <if test="record.idNumber != null">
         id_number = #{record.idNumber,jdbcType=VARCHAR},
       </if>
-      <if test="record.worksId != null">
-        works_id = #{record.worksId,jdbcType=BIGINT},
-      </if>
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=BIGINT},
-      </if>
-      <if test="record.attentionId != null">
-        attention_id = #{record.attentionId,jdbcType=BIGINT},
-      </if>
-      <if test="record.orederId != null">
-        oreder_id = #{record.orederId,jdbcType=BIGINT},
       </if>
       <if test="record.photographerSuccessTimes != null">
         photographer_success_times = #{record.photographerSuccessTimes,jdbcType=INTEGER},
       </if>
-      <if test="record.photographerMessageId != null">
-        photographer_message_id = #{record.photographerMessageId,jdbcType=BIGINT},
+      <if test="record.photographerState != null">
+        photographer_state = #{record.photographerState,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -282,15 +221,12 @@
     set photographer_id = #{record.photographerId,jdbcType=BIGINT},
       photographer_name = #{record.photographerName,jdbcType=VARCHAR},
       photographer_img_url = #{record.photographerImgUrl,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DOUBLE},
       gender = #{record.gender,jdbcType=CHAR},
       id_number = #{record.idNumber,jdbcType=VARCHAR},
-      works_id = #{record.worksId,jdbcType=BIGINT},
       user_id = #{record.userId,jdbcType=BIGINT},
-      attention_id = #{record.attentionId,jdbcType=BIGINT},
-      oreder_id = #{record.orederId,jdbcType=BIGINT},
       photographer_success_times = #{record.photographerSuccessTimes,jdbcType=INTEGER},
-      photographer_message_id = #{record.photographerMessageId,jdbcType=BIGINT}
+      photographer_state = #{record.photographerState,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -305,7 +241,7 @@
         photographer_img_url = #{photographerImgUrl,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        price = #{price,jdbcType=INTEGER},
+        price = #{price,jdbcType=DOUBLE},
       </if>
       <if test="gender != null">
         gender = #{gender,jdbcType=CHAR},
@@ -313,23 +249,14 @@
       <if test="idNumber != null">
         id_number = #{idNumber,jdbcType=VARCHAR},
       </if>
-      <if test="worksId != null">
-        works_id = #{worksId,jdbcType=BIGINT},
-      </if>
       <if test="userId != null">
         user_id = #{userId,jdbcType=BIGINT},
-      </if>
-      <if test="attentionId != null">
-        attention_id = #{attentionId,jdbcType=BIGINT},
-      </if>
-      <if test="orederId != null">
-        oreder_id = #{orederId,jdbcType=BIGINT},
       </if>
       <if test="photographerSuccessTimes != null">
         photographer_success_times = #{photographerSuccessTimes,jdbcType=INTEGER},
       </if>
-      <if test="photographerMessageId != null">
-        photographer_message_id = #{photographerMessageId,jdbcType=BIGINT},
+      <if test="photographerState != null">
+        photographer_state = #{photographerState,jdbcType=INTEGER},
       </if>
     </set>
     where photographer_id = #{photographerId,jdbcType=BIGINT}
@@ -338,15 +265,12 @@
     update photographer
     set photographer_name = #{photographerName,jdbcType=VARCHAR},
       photographer_img_url = #{photographerImgUrl,jdbcType=VARCHAR},
-      price = #{price,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
       gender = #{gender,jdbcType=CHAR},
       id_number = #{idNumber,jdbcType=VARCHAR},
-      works_id = #{worksId,jdbcType=BIGINT},
       user_id = #{userId,jdbcType=BIGINT},
-      attention_id = #{attentionId,jdbcType=BIGINT},
-      oreder_id = #{orederId,jdbcType=BIGINT},
       photographer_success_times = #{photographerSuccessTimes,jdbcType=INTEGER},
-      photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
+      photographer_state = #{photographerState,jdbcType=INTEGER}
     where photographer_id = #{photographerId,jdbcType=BIGINT}
   </update>
 </mapper>

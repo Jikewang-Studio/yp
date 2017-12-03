@@ -8,6 +8,8 @@
     <result column="photographer_id" jdbcType="BIGINT" property="photographerId" />
     <result column="works_style" jdbcType="VARCHAR" property="worksStyle" />
     <result column="works_create" jdbcType="TIMESTAMP" property="worksCreate" />
+    <result column="work_photo_id" jdbcType="INTEGER" property="workPhotoId" />
+    <result column="work_photo_state" jdbcType="INTEGER" property="workPhotoState" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    works_id, works_description, works_img_url, photographer_id, works_style, works_create
+    works_id, works_description, works_img_url, photographer_id, works_style, works_create, 
+    work_photo_id, work_photo_state
   </sql>
   <select id="selectByExample" parameterType="com.bean.WorksExample" resultMap="BaseResultMap">
     select
@@ -102,11 +105,11 @@
   </delete>
   <insert id="insert" parameterType="com.bean.Works">
     insert into works (works_id, works_description, works_img_url, 
-      photographer_id, works_style, works_create
-      )
+      photographer_id, works_style, works_create, 
+      work_photo_id, work_photo_state)
     values (#{worksId,jdbcType=BIGINT}, #{worksDescription,jdbcType=VARCHAR}, #{worksImgUrl,jdbcType=VARCHAR}, 
-      #{photographerId,jdbcType=BIGINT}, #{worksStyle,jdbcType=VARCHAR}, #{worksCreate,jdbcType=TIMESTAMP}
-      )
+      #{photographerId,jdbcType=BIGINT}, #{worksStyle,jdbcType=VARCHAR}, #{worksCreate,jdbcType=TIMESTAMP}, 
+      #{workPhotoId,jdbcType=INTEGER}, #{workPhotoState,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Works">
     insert into works
@@ -129,6 +132,12 @@
       <if test="worksCreate != null">
         works_create,
       </if>
+      <if test="workPhotoId != null">
+        work_photo_id,
+      </if>
+      <if test="workPhotoState != null">
+        work_photo_state,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="worksId != null">
@@ -148,6 +157,12 @@
       </if>
       <if test="worksCreate != null">
         #{worksCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workPhotoId != null">
+        #{workPhotoId,jdbcType=INTEGER},
+      </if>
+      <if test="workPhotoState != null">
+        #{workPhotoState,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -178,6 +193,12 @@
       <if test="record.worksCreate != null">
         works_create = #{record.worksCreate,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.workPhotoId != null">
+        work_photo_id = #{record.workPhotoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.workPhotoState != null">
+        work_photo_state = #{record.workPhotoState,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,7 +211,9 @@
       works_img_url = #{record.worksImgUrl,jdbcType=VARCHAR},
       photographer_id = #{record.photographerId,jdbcType=BIGINT},
       works_style = #{record.worksStyle,jdbcType=VARCHAR},
-      works_create = #{record.worksCreate,jdbcType=TIMESTAMP}
+      works_create = #{record.worksCreate,jdbcType=TIMESTAMP},
+      work_photo_id = #{record.workPhotoId,jdbcType=INTEGER},
+      work_photo_state = #{record.workPhotoState,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,6 +236,12 @@
       <if test="worksCreate != null">
         works_create = #{worksCreate,jdbcType=TIMESTAMP},
       </if>
+      <if test="workPhotoId != null">
+        work_photo_id = #{workPhotoId,jdbcType=INTEGER},
+      </if>
+      <if test="workPhotoState != null">
+        work_photo_state = #{workPhotoState,jdbcType=INTEGER},
+      </if>
     </set>
     where works_id = #{worksId,jdbcType=BIGINT}
   </update>
@@ -222,7 +251,9 @@
       works_img_url = #{worksImgUrl,jdbcType=VARCHAR},
       photographer_id = #{photographerId,jdbcType=BIGINT},
       works_style = #{worksStyle,jdbcType=VARCHAR},
-      works_create = #{worksCreate,jdbcType=TIMESTAMP}
+      works_create = #{worksCreate,jdbcType=TIMESTAMP},
+      work_photo_id = #{workPhotoId,jdbcType=INTEGER},
+      work_photo_state = #{workPhotoState,jdbcType=INTEGER}
     where works_id = #{worksId,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -1,14 +1,19 @@
 package com.bean;
 
 public class Order_details {
+    //订单详情表ID
     private Long orderDetailsId;
 
-    private String orderStatus;
+    //0;表示已经处理；1表示未处理
+    private Integer orderStatus;
 
+    //订单价格
     private Double orderPrice;
 
+    //订单数量
     private Integer orderQuantity;
 
+    //订单评价ID
     private Long orderEvaluationId;
 
     public Long getOrderDetailsId() {
@@ -19,12 +24,12 @@ public class Order_details {
         this.orderDetailsId = orderDetailsId;
     }
 
-    public String getOrderStatus() {
+    public Integer getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus == null ? null : orderStatus.trim();
+    public void setOrderStatus(Integer orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public Double getOrderPrice() {

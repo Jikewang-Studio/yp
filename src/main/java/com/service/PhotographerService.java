@@ -34,6 +34,13 @@ public interface PhotographerService {
      */
     public Map<String ,Object> getPhotographers(int photographerId);
 
+   /*
+    * 管理者，通过摄影师的名字。来模糊查询摄影师信息
+    * @param photographerName
+    * @return
+    */
+    public List<Photographer> getPhotographersByName(String photographerName);
+
     /**
      * 更新摄影师简介
      * @param photographerId
@@ -41,4 +48,6 @@ public interface PhotographerService {
      * @return
      */
     public int updatePhotographerIntro(int photographerId,String intro);
+
+
 }

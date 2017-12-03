@@ -3,15 +3,23 @@ package com.bean;
 import java.util.Date;
 
 public class U_to_p_message {
+    //用户给摄影师的留言表
     private Long photographerMessageId;
 
+    //用户给摄影师留言的内容
     private String photographerMessageContent;
 
+    //用户ID
     private Long userId;
 
+    //摄影师ID
     private Long photographerId;
 
+    //创建时间
     private Date messageCreate;
+
+    //用户姓名
+    private String userName;
 
     public Long getPhotographerMessageId() {
         return photographerMessageId;
@@ -51,5 +59,13 @@ public class U_to_p_message {
 
     public void setMessageCreate(Date messageCreate) {
         this.messageCreate = messageCreate;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName == null ? null : userName.trim();
     }
 }

@@ -7,10 +7,7 @@
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="photographer_id" jdbcType="BIGINT" property="photographerId" />
     <result column="message_create" jdbcType="TIMESTAMP" property="messageCreate" />
-  </resultMap>
-  <!--1.摄影师，获取留言的结果集-->
-  <resultMap id="PGetMessages" type="com.bean.U_to_p_message">
-    <result column="photographer_message_id" jdbcType="BIGINT" property="photographerMessageId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,15 +69,8 @@
   </sql>
   <sql id="Base_Column_List">
     photographer_message_id, photographer_message_content, user_id, photographer_id, 
-    message_create
+    message_create, user_name
   </sql>
-
-  <!--1.摄影师获取信息发送的sql-->
-  <sql id="PGet_Messages_List">
-    photographer_message_id, photographer_id, photographer_message_content,  message_create,user_id,
-    user_name
-  </sql>
-
   <select id="selectByExample" parameterType="com.bean.U_to_p_messageExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -113,11 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.bean.U_to_p_message">
     insert into u_to_p_message (photographer_message_id, photographer_message_content, 
-      user_id, photographer_id, message_create
-      )
+      user_id, photographer_id, message_create, 
+      user_name)
     values (#{photographerMessageId,jdbcType=BIGINT}, #{photographerMessageContent,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=BIGINT}, #{photographerId,jdbcType=BIGINT}, #{messageCreate,jdbcType=TIMESTAMP}
-      )
+      #{userId,jdbcType=BIGINT}, #{photographerId,jdbcType=BIGINT}, #{messageCreate,jdbcType=TIMESTAMP}, 
+      #{userName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.U_to_p_message">
     insert into u_to_p_message
@@ -137,6 +127,9 @@
       <if test="messageCreate != null">
         message_create,
       </if>
+      <if test="userName != null">
+        user_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="photographerMessageId != null">
@@ -153,6 +146,9 @@
       </if>
       <if test="messageCreate != null">
         #{messageCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -180,6 +176,9 @@
       <if test="record.messageCreate != null">
         message_create = #{record.messageCreate,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -191,7 +190,8 @@
       photographer_message_content = #{record.photographerMessageContent,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=BIGINT},
       photographer_id = #{record.photographerId,jdbcType=BIGINT},
-      message_create = #{record.messageCreate,jdbcType=TIMESTAMP}
+      message_create = #{record.messageCreate,jdbcType=TIMESTAMP},
+      user_name = #{record.userName,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -211,6 +211,9 @@
       <if test="messageCreate != null">
         message_create = #{messageCreate,jdbcType=TIMESTAMP},
       </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
     </set>
     where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
   </update>
@@ -219,7 +222,8 @@
     set photographer_message_content = #{photographerMessageContent,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=BIGINT},
       photographer_id = #{photographerId,jdbcType=BIGINT},
-      message_create = #{messageCreate,jdbcType=TIMESTAMP}
+      message_create = #{messageCreate,jdbcType=TIMESTAMP},
+      user_name = #{userName,jdbcType=VARCHAR}
     where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
   </update>
 </mapper>

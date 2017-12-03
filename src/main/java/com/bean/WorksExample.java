@@ -494,6 +494,126 @@ public class WorksExample {
             addCriterion("works_create not between", value1, value2, "worksCreate");
             return (Criteria) this;
         }
+
+        public Criteria andWorkPhotoIdIsNull() {
+            addCriterion("work_photo_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoIdIsNotNull() {
+            addCriterion("work_photo_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoIdEqualTo(Integer value) {
+            addCriterion("work_photo_id =", value, "workPhotoId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoIdNotEqualTo(Integer value) {
+            addCriterion("work_photo_id <>", value, "workPhotoId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoIdGreaterThan(Integer value) {
+            addCriterion("work_photo_id >", value, "workPhotoId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("work_photo_id >=", value, "workPhotoId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoIdLessThan(Integer value) {
+            addCriterion("work_photo_id <", value, "workPhotoId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoIdLessThanOrEqualTo(Integer value) {
+            addCriterion("work_photo_id <=", value, "workPhotoId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoIdIn(List<Integer> values) {
+            addCriterion("work_photo_id in", values, "workPhotoId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoIdNotIn(List<Integer> values) {
+            addCriterion("work_photo_id not in", values, "workPhotoId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoIdBetween(Integer value1, Integer value2) {
+            addCriterion("work_photo_id between", value1, value2, "workPhotoId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("work_photo_id not between", value1, value2, "workPhotoId");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoStateIsNull() {
+            addCriterion("work_photo_state is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoStateIsNotNull() {
+            addCriterion("work_photo_state is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoStateEqualTo(Integer value) {
+            addCriterion("work_photo_state =", value, "workPhotoState");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoStateNotEqualTo(Integer value) {
+            addCriterion("work_photo_state <>", value, "workPhotoState");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoStateGreaterThan(Integer value) {
+            addCriterion("work_photo_state >", value, "workPhotoState");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoStateGreaterThanOrEqualTo(Integer value) {
+            addCriterion("work_photo_state >=", value, "workPhotoState");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoStateLessThan(Integer value) {
+            addCriterion("work_photo_state <", value, "workPhotoState");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoStateLessThanOrEqualTo(Integer value) {
+            addCriterion("work_photo_state <=", value, "workPhotoState");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoStateIn(List<Integer> values) {
+            addCriterion("work_photo_state in", values, "workPhotoState");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoStateNotIn(List<Integer> values) {
+            addCriterion("work_photo_state not in", values, "workPhotoState");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoStateBetween(Integer value1, Integer value2) {
+            addCriterion("work_photo_state between", value1, value2, "workPhotoState");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPhotoStateNotBetween(Integer value1, Integer value2) {
+            addCriterion("work_photo_state not between", value1, value2, "workPhotoState");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

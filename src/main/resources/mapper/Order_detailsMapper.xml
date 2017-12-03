@@ -3,7 +3,7 @@
 <mapper namespace="com.dao.Order_detailsMapper">
   <resultMap id="BaseResultMap" type="com.bean.Order_details">
     <id column="order_details_id" jdbcType="BIGINT" property="orderDetailsId" />
-    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
     <result column="order_price" jdbcType="DOUBLE" property="orderPrice" />
     <result column="order_quantity" jdbcType="INTEGER" property="orderQuantity" />
     <result column="order_evaluation_id" jdbcType="BIGINT" property="orderEvaluationId" />
@@ -102,7 +102,7 @@
   <insert id="insert" parameterType="com.bean.Order_details">
     insert into order_details (order_details_id, order_status, order_price, 
       order_quantity, order_evaluation_id)
-    values (#{orderDetailsId,jdbcType=BIGINT}, #{orderStatus,jdbcType=VARCHAR}, #{orderPrice,jdbcType=DOUBLE}, 
+    values (#{orderDetailsId,jdbcType=BIGINT}, #{orderStatus,jdbcType=INTEGER}, #{orderPrice,jdbcType=DOUBLE}, 
       #{orderQuantity,jdbcType=INTEGER}, #{orderEvaluationId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Order_details">
@@ -129,7 +129,7 @@
         #{orderDetailsId,jdbcType=BIGINT},
       </if>
       <if test="orderStatus != null">
-        #{orderStatus,jdbcType=VARCHAR},
+        #{orderStatus,jdbcType=INTEGER},
       </if>
       <if test="orderPrice != null">
         #{orderPrice,jdbcType=DOUBLE},
@@ -155,7 +155,7 @@
         order_details_id = #{record.orderDetailsId,jdbcType=BIGINT},
       </if>
       <if test="record.orderStatus != null">
-        order_status = #{record.orderStatus,jdbcType=VARCHAR},
+        order_status = #{record.orderStatus,jdbcType=INTEGER},
       </if>
       <if test="record.orderPrice != null">
         order_price = #{record.orderPrice,jdbcType=DOUBLE},
@@ -174,7 +174,7 @@
   <update id="updateByExample" parameterType="map">
     update order_details
     set order_details_id = #{record.orderDetailsId,jdbcType=BIGINT},
-      order_status = #{record.orderStatus,jdbcType=VARCHAR},
+      order_status = #{record.orderStatus,jdbcType=INTEGER},
       order_price = #{record.orderPrice,jdbcType=DOUBLE},
       order_quantity = #{record.orderQuantity,jdbcType=INTEGER},
       order_evaluation_id = #{record.orderEvaluationId,jdbcType=BIGINT}
@@ -186,7 +186,7 @@
     update order_details
     <set>
       <if test="orderStatus != null">
-        order_status = #{orderStatus,jdbcType=VARCHAR},
+        order_status = #{orderStatus,jdbcType=INTEGER},
       </if>
       <if test="orderPrice != null">
         order_price = #{orderPrice,jdbcType=DOUBLE},
@@ -202,7 +202,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bean.Order_details">
     update order_details
-    set order_status = #{orderStatus,jdbcType=VARCHAR},
+    set order_status = #{orderStatus,jdbcType=INTEGER},
       order_price = #{orderPrice,jdbcType=DOUBLE},
       order_quantity = #{orderQuantity,jdbcType=INTEGER},
       order_evaluation_id = #{orderEvaluationId,jdbcType=BIGINT}

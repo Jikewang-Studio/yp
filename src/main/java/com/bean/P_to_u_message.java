@@ -13,6 +13,8 @@ public class P_to_u_message {
 
     private Date messageCreate;
 
+    private String photographerName;
+
     public Long getUserMessageId() {
         return userMessageId;
     }
@@ -51,5 +53,13 @@ public class P_to_u_message {
 
     public void setMessageCreate(Date messageCreate) {
         this.messageCreate = messageCreate;
+    }
+
+    public String getPhotographerName() {
+        return photographerName;
+    }
+
+    public void setPhotographerName(String photographerName) {
+        this.photographerName = photographerName == null ? null : photographerName.trim();
     }
 }

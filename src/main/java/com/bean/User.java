@@ -1,31 +1,32 @@
 package com.bean;
 
 public class User {
+    //用户表Id
     private Long userId;
 
+    //用户姓名
     private String userName;
 
+    //密码
     private String password;
 
+    //用户头像地址
     private String userImgUrl;
 
+    //电话
     private Integer phoneNumber;
 
-    private String idNumber;
-
+    //用户邮箱
     private String email;
 
+    //是否是摄影师;1是;0不是
     private Integer userStatus;
 
+    //是摄影师的话，对应的摄影师ID
     private Long photographerId;
 
-    private Long orderId;
-
+    //拍摄成功次数
     private Integer userSuccessTimes;
-
-    private Long userMessageId;
-
-    private Long attentionId;
 
     public Long getUserId() {
         return userId;
@@ -67,14 +68,6 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber == null ? null : idNumber.trim();
-    }
-
     public String getEmail() {
         return email;
     }
@@ -99,35 +92,11 @@ public class User {
         this.photographerId = photographerId;
     }
 
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
-
     public Integer getUserSuccessTimes() {
         return userSuccessTimes;
     }
 
     public void setUserSuccessTimes(Integer userSuccessTimes) {
         this.userSuccessTimes = userSuccessTimes;
-    }
-
-    public Long getUserMessageId() {
-        return userMessageId;
-    }
-
-    public void setUserMessageId(Long userMessageId) {
-        this.userMessageId = userMessageId;
-    }
-
-    public Long getAttentionId() {
-        return attentionId;
-    }
-
-    public void setAttentionId(Long attentionId) {
-        this.attentionId = attentionId;
     }
 }

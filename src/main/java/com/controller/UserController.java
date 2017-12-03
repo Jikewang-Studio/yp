@@ -1,10 +1,9 @@
 package com.controller;
 
-import com.bean.Photographer;
 import com.bean.User;
 import com.github.pagehelper.PageInfo;
 import com.service.PhotographerService;
-import com.service.UserService;
+import com.service.Impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +17,7 @@ import java.util.List;
 @Controller
 public class UserController {
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
     @Autowired
     PhotographerService photographerService;
 

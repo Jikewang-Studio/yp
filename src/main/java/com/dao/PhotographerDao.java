@@ -8,10 +8,13 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
+
 /**
  * Create by 文童 2017/12/2
  * 摄影师表操作
  */
+@Repository
 public interface PhotographerDao {
 
     /**

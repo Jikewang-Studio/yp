@@ -3,14 +3,19 @@ package com.bean;
 import java.util.Date;
 
 public class Order {
+    //订单表ID
     private Long orderId;
 
+    //用户ID
     private Long userId;
 
+    //摄影师ID
     private Long photographerId;
 
+    //订单创建时间
     private Date orderCreat;
 
+    //订单详情ID
     private Long orderDetailsId;
 
     public Long getOrderId() {

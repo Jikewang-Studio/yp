@@ -1,11 +1,14 @@
 package com.service.Impl;
 
+import com.bean.Photographer;
 import com.dao.PhotographerDao;
+import com.dao.PhotographerMapper;
 import com.service.PhotographerService;
 import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,6 +22,9 @@ public class PhotographerServiceImpl implements PhotographerService{
     @Resource
     PhotographerDao photographerDao;
 
+    //摄影师Mapper
+    @Resource
+    PhotographerMapper photographerMapper;
     /**
      * 摄影师注册
      * @param userId
@@ -41,6 +47,16 @@ public class PhotographerServiceImpl implements PhotographerService{
     @Override
     public Map<String, Object> getPhotographers(int photographerId) {
         return photographerDao.getPhotographerDetailsById(photographerId);
+    }
+    /**
+     * 通过摄影师的ID查找摄影师的详细信息
+     * @param photographerName
+     * @return
+     *          Map [{photographer_name=woleiwolei, ID_number=123456789123456789, photographer_state=0, gender=M, photographer_success_times=1, photographer_id=1}]
+     */
+    @Override
+    public List<Photographer> getPhotographersByName(String photographerName) {
+        return photographerMapper.selectByPhotographerName(photographerName) ;
     }
 
     @Override

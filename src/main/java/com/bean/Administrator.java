@@ -1,10 +1,13 @@
 package com.bean;
 
 public class Administrator {
+    //管理员表ID
     private Integer administratorId;
 
+   //管理员姓名
     private String administratorName;
 
+  //管理员密码
     private String administratorPassword;
 
     public Integer getAdministratorId() {

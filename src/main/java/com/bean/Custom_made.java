@@ -1,20 +1,28 @@
 package com.bean;
 
 public class Custom_made {
+    //用户定制表ID
     private Long customMadeId;
 
+    //学院名称
     private String collegeName;
 
+    //班级名称
     private String className;
 
+    //人数
     private Integer peopleQuantity;
 
+    //联系人姓名
     private String contactName;
 
+   //联系人电话
     private String contactPhoneNumber;
 
+   //附加信息
     private String extraInformation;
 
+  //0表示A类定制，1；表示B类定制；2表示明信片定制;5代表已经处理
     private Integer customType;
 
     public Custom_made() {

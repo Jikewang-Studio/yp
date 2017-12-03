@@ -43,14 +43,14 @@
         <!--<table tableName="administrator" domainObjectName="Administrator" ></table>-->
         <!--<table tableName="application_photographer" domainObjectName="Application_photographer" ></table>-->
         <!--<table tableName="attention" domainObjectName="Attention" ></table>-->
-        <table tableName="custom_made" domainObjectName="Custom_made" ></table>
+        <!--<table tableName="custom_made" domainObjectName="Custom_made" ></table>-->
         <!--<table tableName="order" domainObjectName="Order" ></table>-->
         <!--<table tableName="order_evaluation" domainObjectName="Order_evaluation" ></table>-->
         <!--<table tableName="order_details" domainObjectName="Order_details" ></table>-->
-        <!--<table tableName="p_to_u_message" domainObjectName="P_to_u_message" ></table>-->
+        <table tableName="p_to_u_message" domainObjectName="P_to_u_message" ></table>
         <!--<table tableName="photographer" domainObjectName="Photographer" ></table>-->
-        <!--<table tableName="u_to_p_message" domainObjectName="U_to_p_message" ></table>-->
-        <!--<table tableName="user" domainObjectName="User" ></table>-->
-        <!--<table tableName="works" domainObjectName="Works" ></table>-->
+        <table tableName="u_to_p_message" domainObjectName="U_to_p_message" ></table>
+        <table tableName="user" domainObjectName="User" ></table>
+        <table tableName="works" domainObjectName="Works" ></table>
     </context>
 </generatorConfiguration>

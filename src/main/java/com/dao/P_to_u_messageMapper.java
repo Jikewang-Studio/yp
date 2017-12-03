@@ -4,9 +4,7 @@ import com.bean.P_to_u_message;
 import com.bean.P_to_u_messageExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface P_to_u_messageMapper {
     long countByExample(P_to_u_messageExample example);
 
@@ -19,8 +17,6 @@ public interface P_to_u_messageMapper {
     int insertSelective(P_to_u_message record);
 
     List<P_to_u_message> selectByExample(P_to_u_messageExample example);
-    //1.通过用户Id获取到，摄影师的回复信息
-    List<P_to_u_message> selectByUserId(Long userId);
 
     P_to_u_message selectByPrimaryKey(Long userMessageId);
 

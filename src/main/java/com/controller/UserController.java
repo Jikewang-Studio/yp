@@ -1,10 +1,8 @@
 package com.controller;
 
-import com.bean.Custom_made;
 import com.bean.Photographer;
 import com.bean.User;
 import com.github.pagehelper.PageInfo;
-import com.service.CustomService;
 import com.service.PhotographerService;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +20,26 @@ public class UserController {
     @Autowired
     UserService userService;
     @Autowired
-    CustomService customService;
+    PhotographerService photographerService;
 
-   //1.1.注册用户
+    //1.1管理者，管理用户。
+    @RequestMapping("/getusers")
+    public String getUsers(String userName,Model model){
+        List<User> users=userService.getUsers(userName);
+        PageInfo page=new PageInfo(users,5);
+        model.addAttribute("UpageInfo",page);
+        return "list-user";
+    }
+    //1.2管理者，管理摄影师.
+    public String getPhotographers(String photographerName,Model model){
+
+        return "list-photographer";
+    }
+   //2.1.注册用户
     public  void addUser(User user){
         userService.registerUser(user);
     }
-    //1.2用户登录【手机和密码的验证】
+    //2.2用户登录【手机和密码的验证】
     public String userLogin
     (User user,Model model) throws  Exception{
       user=userService.checkLogin(user.getPhoneNumber(),user.getPassword());
@@ -37,9 +48,5 @@ public class UserController {
           return "welcome";
       }
       return "fail";
-    }
-    //2.用户提交定制
-    public void addCustom(Custom_made custom_made){
-        customService.insetCustoms(custom_made);
     }
 }

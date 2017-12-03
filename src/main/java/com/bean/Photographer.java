@@ -1,29 +1,41 @@
 package com.bean;
 
 public class Photographer {
-    private Long photographerId;
+    //摄影师Id
+    private int photographerId;
 
+    //摄影师姓名
     private String photographerName;
 
+    //摄影师头像ID
     private String photographerImgUrl;
 
-    private Double price;
+    //摄影师价格
+    private Integer price;
 
-    private String gender;
+    //摄影师性别
+    private String sex;
 
+    //摄影师身份证号
     private String idNumber;
 
+    //摄影师所属用户Id
     private Long userId;
 
+    //摄影师成功单数
     private Integer photographerSuccessTimes;
 
-    private Integer photographerState;
+    //摄影师状态码
+    private int photographerState;
 
-    public Long getPhotographerId() {
+    //摄影师简介
+    private String photographerIntro;
+
+    public int getPhotographerId() {
         return photographerId;
     }
 
-    public void setPhotographerId(Long photographerId) {
+    public void setPhotographerId(int photographerId) {
         this.photographerId = photographerId;
     }
 
@@ -32,7 +44,7 @@ public class Photographer {
     }
 
     public void setPhotographerName(String photographerName) {
-        this.photographerName = photographerName == null ? null : photographerName.trim();
+        this.photographerName = photographerName;
     }
 
     public String getPhotographerImgUrl() {
@@ -40,23 +52,23 @@ public class Photographer {
     }
 
     public void setPhotographerImgUrl(String photographerImgUrl) {
-        this.photographerImgUrl = photographerImgUrl == null ? null : photographerImgUrl.trim();
+        this.photographerImgUrl = photographerImgUrl;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
-    public String getGender() {
-        return gender;
+    public String getSex() {
+        return sex;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender == null ? null : gender.trim();
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public String getIdNumber() {
@@ -64,7 +76,7 @@ public class Photographer {
     }
 
     public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber == null ? null : idNumber.trim();
+        this.idNumber = idNumber;
     }
 
     public Long getUserId() {
@@ -83,11 +95,19 @@ public class Photographer {
         this.photographerSuccessTimes = photographerSuccessTimes;
     }
 
-    public Integer getPhotographerState() {
+    public int getPhotographerState() {
         return photographerState;
     }
 
-    public void setPhotographerState(Integer photographerState) {
+    public void setPhotographerState(int photographerState) {
         this.photographerState = photographerState;
+    }
+
+    public String getPhotographerIntro() {
+        return photographerIntro;
+    }
+
+    public void setPhotographerIntro(String photographerIntro) {
+        this.photographerIntro = photographerIntro;
     }
 }

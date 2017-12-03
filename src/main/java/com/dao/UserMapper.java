@@ -19,11 +19,10 @@ public interface UserMapper {
     int insertSelective(User record);
 
     List<User> selectByExample(UserExample example);
-    //1.管理者，用搜索查询用户
+   //1.管理者，用搜索查询用户
     List<User>selectByUserName(String userName);
     //2.用户登录验证，通过手机号码，密码验证
     User findUserByPhoneNumber(Integer phoneNumber);
-
     User selectByPrimaryKey(Long userId);
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);

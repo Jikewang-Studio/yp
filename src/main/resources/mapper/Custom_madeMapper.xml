@@ -3,7 +3,31 @@
 <mapper namespace="com.dao.Custom_madeMapper">
   <resultMap id="BaseResultMap" type="com.bean.Custom_made">
     <id column="custom_made_id" jdbcType="BIGINT" property="customMadeId" />
+    <result column="college_name" jdbcType="VARCHAR" property="collegeName" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="people_quantity" jdbcType="INTEGER" property="peopleQuantity" />
+    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="contact_phone_number" jdbcType="VARCHAR" property="contactPhoneNumber" />
+    <result column="extra_information" jdbcType="VARCHAR" property="extraInformation" />
+    <result column="custom_type" jdbcType="INTEGER" property="customType" />
   </resultMap>
+  <!--1.管理者按类型，查询定制信息-->
+  <resultMap id="GetCustoms" type="com.bean.Custom_made">
+    <id column="custom_made_id" jdbcType="BIGINT" property="customMadeId" />
+    <result column="college_name" jdbcType="VARCHAR" property="collegeName" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="contact_phone_number" jdbcType="VARCHAR" property="contactPhoneNumber" />
+    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="contact_phone_number" jdbcType="INTEGER" property="contactPhoneNumber" />
+    <result column="extra_information" jdbcType="VARCHAR" property="extraInformation" />
+  </resultMap>
+
+  <!--1.按类型查询发送的sql-->
+  <sql id="GetCustoms">
+    custom_made_id, college_name, class_name, people_quantity, contact_name, contact_phone_number,
+    extra_information
+  </sql>
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -63,8 +87,19 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    custom_made_id
+    custom_made_id, college_name, class_name, people_quantity, contact_name, contact_phone_number, 
+    extra_information, custom_type
   </sql>
+
+  <!--//1.管理者，通过类型查看所有的定制情况-->
+  <!--List<Custom_made> selectByCustomType(Integer customType);-->
+  <select id="selectByCustomType" parameterType="java.lang.Integer" resultMap="GetCustoms">
+    SELECT
+    <include refid="GetCustoms"/>
+    FROM  custom_made
+    WHERE custom_type = #{customType}
+  </select>
+
   <select id="selectByExample" parameterType="com.bean.Custom_madeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -79,6 +114,12 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from custom_made
+    where custom_made_id = #{customMadeId,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from custom_made
     where custom_made_id = #{customMadeId,jdbcType=BIGINT}
@@ -90,8 +131,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bean.Custom_made">
-    insert into custom_made (custom_made_id)
-    values (#{customMadeId,jdbcType=BIGINT})
+    insert into custom_made (custom_made_id, college_name, class_name, 
+      people_quantity, contact_name, contact_phone_number, 
+      extra_information, custom_type)
+    values (#{customMadeId,jdbcType=BIGINT}, #{collegeName,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR}, 
+      #{peopleQuantity,jdbcType=INTEGER}, #{contactName,jdbcType=VARCHAR}, #{contactPhoneNumber,jdbcType=VARCHAR}, 
+      #{extraInformation,jdbcType=VARCHAR}, #{customType,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Custom_made">
     insert into custom_made
@@ -99,10 +144,52 @@
       <if test="customMadeId != null">
         custom_made_id,
       </if>
+      <if test="collegeName != null">
+        college_name,
+      </if>
+      <if test="className != null">
+        class_name,
+      </if>
+      <if test="peopleQuantity != null">
+        people_quantity,
+      </if>
+      <if test="contactName != null">
+        contact_name,
+      </if>
+      <if test="contactPhoneNumber != null">
+        contact_phone_number,
+      </if>
+      <if test="extraInformation != null">
+        extra_information,
+      </if>
+      <if test="customType != null">
+        custom_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="customMadeId != null">
         #{customMadeId,jdbcType=BIGINT},
+      </if>
+      <if test="collegeName != null">
+        #{collegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleQuantity != null">
+        #{peopleQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="contactName != null">
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhoneNumber != null">
+        #{contactPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInformation != null">
+        #{extraInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="customType != null">
+        #{customType,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -118,6 +205,27 @@
       <if test="record.customMadeId != null">
         custom_made_id = #{record.customMadeId,jdbcType=BIGINT},
       </if>
+      <if test="record.collegeName != null">
+        college_name = #{record.collegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.className != null">
+        class_name = #{record.className,jdbcType=VARCHAR},
+      </if>
+      <if test="record.peopleQuantity != null">
+        people_quantity = #{record.peopleQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="record.contactName != null">
+        contact_name = #{record.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPhoneNumber != null">
+        contact_phone_number = #{record.contactPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extraInformation != null">
+        extra_information = #{record.extraInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customType != null">
+        custom_type = #{record.customType,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -125,9 +233,54 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update custom_made
-    set custom_made_id = #{record.customMadeId,jdbcType=BIGINT}
+    set custom_made_id = #{record.customMadeId,jdbcType=BIGINT},
+      college_name = #{record.collegeName,jdbcType=VARCHAR},
+      class_name = #{record.className,jdbcType=VARCHAR},
+      people_quantity = #{record.peopleQuantity,jdbcType=INTEGER},
+      contact_name = #{record.contactName,jdbcType=VARCHAR},
+      contact_phone_number = #{record.contactPhoneNumber,jdbcType=VARCHAR},
+      extra_information = #{record.extraInformation,jdbcType=VARCHAR},
+      custom_type = #{record.customType,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Custom_made">
+    update custom_made
+    <set>
+      <if test="collegeName != null">
+        college_name = #{collegeName,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="peopleQuantity != null">
+        people_quantity = #{peopleQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="contactName != null">
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhoneNumber != null">
+        contact_phone_number = #{contactPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInformation != null">
+        extra_information = #{extraInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="customType != null">
+        custom_type = #{customType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where custom_made_id = #{customMadeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Custom_made">
+    update custom_made
+    set college_name = #{collegeName,jdbcType=VARCHAR},
+      class_name = #{className,jdbcType=VARCHAR},
+      people_quantity = #{peopleQuantity,jdbcType=INTEGER},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_phone_number = #{contactPhoneNumber,jdbcType=VARCHAR},
+      extra_information = #{extraInformation,jdbcType=VARCHAR},
+      custom_type = #{customType,jdbcType=INTEGER}
+    where custom_made_id = #{customMadeId,jdbcType=BIGINT}
   </update>
 </mapper>

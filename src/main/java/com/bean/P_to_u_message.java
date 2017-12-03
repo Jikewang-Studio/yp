@@ -15,6 +15,15 @@ public class P_to_u_message {
 
     private String photographerName;
 
+    @Override
+    public String toString() {
+        return "P_to_u_message{" +
+                "userMessageContent='" + userMessageContent + '\'' +
+                ", messageCreate=" + messageCreate +
+                ", photographerName='" + photographerName + '\'' +
+                '}';
+    }
+
     public Long getUserMessageId() {
         return userMessageId;
     }

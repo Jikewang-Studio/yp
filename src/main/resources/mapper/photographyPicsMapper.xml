@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    Create by 文童 2017-12-2
+    图片数据库操作mapper
+-->
+
+
+<mapper namespace="com.dao.PhotographerDao">
+
+    <!--上传图片-->
+    <insert id="createAlbum">
+        INSERT INTO album(photographer_id,album_name,album_address,album_pushTime)
+                VALUES (#{photographer_id},#{albumName},#{alnumAddress},now());
+    </insert>
+</mapper>

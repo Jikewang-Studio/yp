@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.WorksMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Works">
+    <id column="works_id" jdbcType="BIGINT" property="worksId" />
+    <result column="works_description" jdbcType="VARCHAR" property="worksDescription" />
+    <result column="works_img_url" jdbcType="VARCHAR" property="worksImgUrl" />
+    <result column="photographer_id" jdbcType="BIGINT" property="photographerId" />
+    <result column="works_style" jdbcType="VARCHAR" property="worksStyle" />
+    <result column="works_create" jdbcType="TIMESTAMP" property="worksCreate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    works_id, works_description, works_img_url, photographer_id, works_style, works_create
+  </sql>
+  <select id="selectByExample" parameterType="com.bean.WorksExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from works
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from works
+    where works_id = #{worksId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from works
+    where works_id = #{worksId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bean.WorksExample">
+    delete from works
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bean.Works">
+    insert into works (works_id, works_description, works_img_url, 
+      photographer_id, works_style, works_create
+      )
+    values (#{worksId,jdbcType=BIGINT}, #{worksDescription,jdbcType=VARCHAR}, #{worksImgUrl,jdbcType=VARCHAR}, 
+      #{photographerId,jdbcType=BIGINT}, #{worksStyle,jdbcType=VARCHAR}, #{worksCreate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Works">
+    insert into works
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="worksId != null">
+        works_id,
+      </if>
+      <if test="worksDescription != null">
+        works_description,
+      </if>
+      <if test="worksImgUrl != null">
+        works_img_url,
+      </if>
+      <if test="photographerId != null">
+        photographer_id,
+      </if>
+      <if test="worksStyle != null">
+        works_style,
+      </if>
+      <if test="worksCreate != null">
+        works_create,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="worksId != null">
+        #{worksId,jdbcType=BIGINT},
+      </if>
+      <if test="worksDescription != null">
+        #{worksDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="worksImgUrl != null">
+        #{worksImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="photographerId != null">
+        #{photographerId,jdbcType=BIGINT},
+      </if>
+      <if test="worksStyle != null">
+        #{worksStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="worksCreate != null">
+        #{worksCreate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bean.WorksExample" resultType="java.lang.Long">
+    select count(*) from works
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update works
+    <set>
+      <if test="record.worksId != null">
+        works_id = #{record.worksId,jdbcType=BIGINT},
+      </if>
+      <if test="record.worksDescription != null">
+        works_description = #{record.worksDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.worksImgUrl != null">
+        works_img_url = #{record.worksImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photographerId != null">
+        photographer_id = #{record.photographerId,jdbcType=BIGINT},
+      </if>
+      <if test="record.worksStyle != null">
+        works_style = #{record.worksStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.worksCreate != null">
+        works_create = #{record.worksCreate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update works
+    set works_id = #{record.worksId,jdbcType=BIGINT},
+      works_description = #{record.worksDescription,jdbcType=VARCHAR},
+      works_img_url = #{record.worksImgUrl,jdbcType=VARCHAR},
+      photographer_id = #{record.photographerId,jdbcType=BIGINT},
+      works_style = #{record.worksStyle,jdbcType=VARCHAR},
+      works_create = #{record.worksCreate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Works">
+    update works
+    <set>
+      <if test="worksDescription != null">
+        works_description = #{worksDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="worksImgUrl != null">
+        works_img_url = #{worksImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="photographerId != null">
+        photographer_id = #{photographerId,jdbcType=BIGINT},
+      </if>
+      <if test="worksStyle != null">
+        works_style = #{worksStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="worksCreate != null">
+        works_create = #{worksCreate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where works_id = #{worksId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Works">
+    update works
+    set works_description = #{worksDescription,jdbcType=VARCHAR},
+      works_img_url = #{worksImgUrl,jdbcType=VARCHAR},
+      photographer_id = #{photographerId,jdbcType=BIGINT},
+      works_style = #{worksStyle,jdbcType=VARCHAR},
+      works_create = #{worksCreate,jdbcType=TIMESTAMP}
+    where works_id = #{worksId,jdbcType=BIGINT}
+  </update>
+</mapper>

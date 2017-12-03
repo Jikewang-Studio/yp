@@ -1,4 +1,4 @@
-package com.service;
+package com.service.Impl;
 
 import com.dao.AlbumDao;
 import com.service.AlbumService;

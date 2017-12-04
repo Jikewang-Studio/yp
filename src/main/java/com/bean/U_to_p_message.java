@@ -21,6 +21,17 @@ public class U_to_p_message {
     //用户姓名
     private String userName;
 
+    //对象的toString
+    @Override
+    public String toString() {
+        return "U_to_p_message{" +
+                "photographerMessageContent='" + photographerMessageContent + '\'' +
+                ", messageCreate=" + messageCreate +
+                ", userName='" + userName + '\'' +
+                '}';
+    }
+
+    //属性的get和set方法
     public Long getPhotographerMessageId() {
         return photographerMessageId;
     }

@@ -28,6 +28,16 @@ public class User {
     //拍摄成功次数
     private Integer userSuccessTimes;
 
+    //对象的有参，无参构造器
+
+    public User(String userName, String password, Integer phoneNumber, String email) {
+        this.userName = userName;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
+    //属性的get，set方法
     public Long getUserId() {
         return userId;
     }

@@ -3,18 +3,35 @@ package com.bean;
 import java.util.Date;
 
 public class P_to_u_message {
+    //摄影师回复用户的留言表Id
     private Long userMessageId;
 
+    //摄影师给用户留言的内容
     private String userMessageContent;
 
+    //用户Id
     private Long userId;
 
+    //摄影师ID
     private Long photographerId;
 
+    //创建时间
     private Date messageCreate;
 
+    //摄影师名字
     private String photographerName;
 
+    //对象的toString方法
+    @Override
+    public String toString() {
+        return "P_to_u_message{" +
+                "userMessageContent='" + userMessageContent + '\'' +
+                ", messageCreate=" + messageCreate +
+                ", photographerName='" + photographerName + '\'' +
+                '}';
+    }
+
+    //属性的get，set方法
     public Long getUserMessageId() {
         return userMessageId;
     }

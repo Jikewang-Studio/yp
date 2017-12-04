@@ -1,6 +1,7 @@
 package com.dao;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.Date;
 
@@ -9,6 +10,7 @@ import java.util.Date;
  * 相册数据库操作
  *
  */
+@Repository
 public interface AlbumDao {
 
     /**

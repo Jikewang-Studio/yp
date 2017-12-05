@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/11/27.
  */
-@Service("UserService")
+@Service
 public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;

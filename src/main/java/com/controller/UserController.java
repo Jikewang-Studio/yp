@@ -2,6 +2,7 @@ package com.controller;
 
 import com.bean.User;
 import com.service.Impl.UserServiceImpl;
+import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +13,7 @@ import org.springframework.ui.Model;
 @Controller
 public class UserController {
     @Autowired
-    UserServiceImpl userService;
+    UserService userService;
 
    //1.1.注册用户
     public  void addUser(User user){

@@ -1,8 +1,10 @@
 package com.controller;
 
 import com.bean.P_to_u_message;
+import com.bean.U_to_p_message;
 import com.service.MessageService;
 import com.service.PhotographerService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -18,13 +20,10 @@ public class MessageController {
 
     /**
      * 1.用户根据自身Id，留言信息给摄影师。
-     *
-     * @param userId
-     * @param messageContent
-     * @param photographerId
+     *@param u_to_p_message
      */
-    public void addMessages(Integer userId, String messageContent, Integer photographerId) {
-
+    public void addMessage(U_to_p_message u_to_p_message) {
+    messageService.addMessage(u_to_p_message);
     }
 
     /**

@@ -13,7 +13,7 @@ public interface UserMapper {
     int deleteByExample(UserExample example);
 
     int deleteByPrimaryKey(Long userId);
-
+    //2.用户注册。
     int insert(User record);
 
     int insertSelective(User record);

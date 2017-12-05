@@ -97,6 +97,15 @@
         AND up.photographer_id=#{photographerId};
     </select>
 
+    <!--//2.用户给摄影师留言。-->
+    <!--U_to_p_message addMessage(U_to_p_message u_to_p_message);-->
+    <insert id="addMessage" parameterType="com.bean.U_to_p_message">
+      insert into u_to_p_message (photographer_message_content,
+      user_id, photographer_id
+      )
+      VALUES (#{photographerMessageContent},#{userId},#{photographerId})
+    </insert>
+
     <select id="selectByExample" parameterType="com.bean.U_to_p_messageExample" resultMap="BaseResultMap">
         select
         <if test="distinct">

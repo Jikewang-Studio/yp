@@ -30,7 +30,16 @@ public class MessageServiceImpl implements MessageService {
         return u_to_p_messageMapper.selectByPhotographerId(photographerId);
     }
     /**
-     * 2.用户根据Id，获取到摄影师回复给自己的信息。
+     * 2.1用户给摄影师留言。
+     * @param message
+     */
+    @Override
+    public void addMessage(U_to_p_message message) {
+        u_to_p_messageMapper.addMessage(message);
+    }
+
+    /**
+     * 2.2用户根据Id，获取到摄影师回复给自己的信息。
      * @param userId
      */
     @Override

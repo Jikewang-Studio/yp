@@ -16,7 +16,12 @@ public interface MessageService {
     public List<U_to_p_message> getUMessages(Long photographerId);
 
     /**
-     * 2.用户根据自己的ID，获取到摄影师给自己的回复
+     *2.1用户给摄影师留言。
+     *
+     */
+    public void addMessage(U_to_p_message message);
+    /**
+     * 2.2用户根据自己的ID，获取到摄影师给自己的回复
      * @param
      */
     public List<P_to_u_message> getPMessages(Long userId);

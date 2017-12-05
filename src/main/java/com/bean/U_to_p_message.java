@@ -30,6 +30,16 @@ public class U_to_p_message {
                 ", userName='" + userName + '\'' +
                 '}';
     }
+   //对象的无参构造函数和有参构造函数。
+
+    public U_to_p_message() {
+    }
+
+    public U_to_p_message(String photographerMessageContent, Long userId, Long photographerId) {
+        this.photographerMessageContent = photographerMessageContent;
+        this.userId = userId;
+        this.photographerId = photographerId;
+    }
 
     //属性的get和set方法
     public Long getPhotographerMessageId() {

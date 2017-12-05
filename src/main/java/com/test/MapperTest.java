@@ -52,7 +52,12 @@ public class MapperTest {
 //            System.out.println("插入了~~");
 //        }
 
-        //2.测试用户根据Id，获取到摄影师给自己的留言。-->测试成功
+         //2.1测试用户给摄影师留言。
+        u_to_p_messageMapper.addMessage
+        (new U_to_p_message("哈哈",Long.valueOf(1),Long.valueOf(2)));
+        System.out.println("插入成功~");
+
+        //2.2测试用户根据Id，获取到摄影师给自己的留言。-->测试成功
 //   List<P_to_u_message> messages=p_to_u_messageMapper.selectByUserId(Long.valueOf(1));
 //    for (P_to_u_message message:messages){
 //        System.out.println(message);

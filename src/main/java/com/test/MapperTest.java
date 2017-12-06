@@ -1,7 +1,9 @@
 package com.test;
+import com.bean.Custom_made;
 import com.bean.P_to_u_message;
 import com.bean.U_to_p_message;
 import com.bean.User;
+import com.dao.Custom_madeMapper;
 import com.dao.P_to_u_messageMapper;
 import com.dao.U_to_p_messageMapper;
 import com.dao.UserMapper;
@@ -27,7 +29,8 @@ public class MapperTest {
     U_to_p_messageMapper u_to_p_messageMapper;
     @Autowired
     P_to_u_messageMapper p_to_u_messageMapper;
-
+    @Autowired
+    Custom_madeMapper custom_madeMapper;
     @Autowired
     SqlSession sqlSession;
 
@@ -52,7 +55,7 @@ public class MapperTest {
 //            System.out.println("插入了~~");
 //        }
 
-         //2.1测试用户给摄影师留言。
+         //2.1测试用户给摄影师留言。--->成功
         u_to_p_messageMapper.addMessage
         (new U_to_p_message("哈哈",Long.valueOf(1),Long.valueOf(2)));
         System.out.println("插入成功~");
@@ -62,5 +65,13 @@ public class MapperTest {
 //    for (P_to_u_message message:messages){
 //        System.out.println(message);
 //    }
+    }
+
+    @Test
+    public void testCustomMade(){
+        //3.1用户提交定制订单
+        custom_madeMapper.insert
+           (new Custom_made(null,"背影大学","经管二班",10,"张先生","12345678915",null,0));
+        System.out.println("用户提交定制订单成功！！");
     }
 }

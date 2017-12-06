@@ -1,6 +1,8 @@
 package com.controller;
 
+import com.bean.Custom_made;
 import com.bean.User;
+import com.service.CustomService;
 import com.service.Impl.UserServiceImpl;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,8 @@ import org.springframework.ui.Model;
 public class UserController {
     @Autowired
     UserService userService;
-
+    @Autowired
+    CustomService customService;
    //1.1.注册用户
     public  void addUser(User user){
         userService.registerUser(user);
@@ -28,5 +31,9 @@ public class UserController {
           return "welcome";
       }
       return "fail";
+    }
+    //2.1用户提交定制信息。
+    public void insertCustom(Custom_made custom_made){
+        customService.insertCustom(custom_made);
     }
 }

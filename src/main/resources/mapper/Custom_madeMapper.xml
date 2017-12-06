@@ -22,7 +22,7 @@
     <result column="extra_information" jdbcType="VARCHAR" property="extraInformation" />
   </resultMap>
 
-  <!--1.按类型查询发送的sql-->
+  <!--1.管理者按类型查询发送的sql-->
   <sql id="GetCustoms">
     custom_made_id, college_name, class_name, people_quantity, contact_name, contact_phone_number,
     extra_information
@@ -130,6 +130,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  <!--2.用户添加定制信息-->
   <insert id="insert" parameterType="com.bean.Custom_made">
     insert into custom_made (custom_made_id, college_name, class_name, 
       people_quantity, contact_name, contact_phone_number, 

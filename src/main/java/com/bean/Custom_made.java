@@ -25,10 +25,11 @@ public class Custom_made {
   //0表示A类定制，1；表示B类定制；2表示明信片定制;5代表已经处理
     private Integer customType;
 
+    //对象的无参构造函数以及有参构造函数
     public Custom_made() {
     }
 
-    public Custom_made(Long customMadeId, String collegeName, String className, Integer peopleQuantity, String contactName, String contactPhoneNumber, String extraInformation, Integer customType) {
+    public Custom_made(Long customMadeId, String collegeName, String className, Integer peopleQuantity, String contactName, String contactPhoneNumber, String extraInformation,Integer customType) {
         this.customMadeId = customMadeId;
         this.collegeName = collegeName;
         this.className = className;
@@ -36,7 +37,7 @@ public class Custom_made {
         this.contactName = contactName;
         this.contactPhoneNumber = contactPhoneNumber;
         this.extraInformation = extraInformation;
-        this.customType = customType;
+        this.customType=customType;
     }
 
     @Override

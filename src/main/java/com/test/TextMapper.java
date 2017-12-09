@@ -29,5 +29,6 @@ public class TextMapper {
     @Test
     public void textAlbumDao(){
         System.out.println(albumDao.createAlbum(1,"text01","adress01"));
+        System.out.println(albumDao.getPhotoIdAndUrlByAlbumId(1));
     }
 }

@@ -45,7 +45,7 @@ public class PhotographerServiceImpl implements PhotographerService{
      *          Map [{photographer_name=woleiwolei, ID_number=123456789123456789, photographer_state=0, gender=M, photographer_success_times=1, photographer_id=1}]
      */
     @Override
-    public Map<String, Object> getPhotographers(int photographerId) {
+    public Map<String, Object> getPhotographerDetailsById(int photographerId) {
         return photographerDao.getPhotographerDetailsById(photographerId);
     }
     /**

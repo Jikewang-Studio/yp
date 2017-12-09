@@ -2,6 +2,9 @@ package com.service;
 
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Create by 文童 2017-12-2
  * 相册服务类
@@ -17,4 +20,10 @@ public interface AlbumService {
      */
     public int createAlbum(int photographer_id,String albumName,String alnumAddress);
 
+    /**
+     * 通过相册Id获取相册里面的图片的Id 和URL
+     * @param AlbumId
+     * @return
+     */
+    public List<Map<String, Object>> getPhotoIdAndUrlByAlbumId(int AlbumId);
 }

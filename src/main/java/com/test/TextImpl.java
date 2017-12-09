@@ -20,7 +20,7 @@ public class TextImpl {
     AlbumService albumService;
     @Test
     public void textPhotographerService(){
-        System.out.println(photographerService.getPhotographers(1));
+        System.out.println(photographerService.getPhotographerDetailsById(1));
         System.out.println(photographerService.photographerRegister(1,"wt","500243199810015352",'M'));
         System.out.println(photographerService.updatePhotographerIntro(2,"我是Text02"));
     }

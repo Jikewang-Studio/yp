@@ -5,6 +5,8 @@ import com.service.AlbumService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Creat by 文童 2017-12-2
@@ -25,5 +27,15 @@ public class AlbumServiceImpl implements AlbumService{
     @Override
     public int createAlbum(int photographer_id, String albumName, String alnumAddress) {
         return albumDao.createAlbum(photographer_id,albumName,alnumAddress);
+    }
+
+    /**
+     * 通过相册Id获取相册里面的图片的Id 和URL
+     * @param AlbumId
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> getPhotoIdAndUrlByAlbumId(int AlbumId) {
+        return albumDao.getPhotoIdAndUrlByAlbumId(AlbumId);
     }
 }

@@ -32,7 +32,7 @@ public interface PhotographerService {
      * @param photographerId
      * @return
      */
-    public Map<String ,Object> getPhotographers(int photographerId);
+    public Map<String ,Object> getPhotographerDetailsById(int photographerId);
 
    /*
     * 管理者，通过摄影师的名字。来模糊查询摄影师信息

@@ -13,4 +13,9 @@
         INSERT INTO album(photographer_id,album_name,album_address,album_pushTime)
                 VALUES (#{photographer_id},#{albumName},#{alnumAddress},now());
     </insert>
+
+    <!--通过相册Id获取相册里面的图片的Id 和URL-->
+    <select id="getPhotoIdAndUrlByAlbumId" resultType="Map">
+        SELECT PhotographyPics_id,PhotographyPics_url FROM PhotographyPics WHERE album_id=1;
+    </select>
 </mapper>

@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
      * @param phoneNumber
      * @param password
      */
-   public User checkLogin(Integer phoneNumber,String password) {
+   public User checkLogin(String phoneNumber,String password) {
        User user=userMapper.findUserByPhoneNumber(phoneNumber);
        if (user!=null && user.getPassword().equals(password)){
            return  user;

@@ -13,19 +13,19 @@ public interface UserMapper {
     int deleteByExample(UserExample example);
 
     int deleteByPrimaryKey(Long userId);
-    //2.用户注册。
+   //1.用户注册
     int insert(User record);
 
     int insertSelective(User record);
 
     List<User> selectByExample(UserExample example);
-   //1.管理者查询用户
-    List<User> selectByUserName(String userName);
+    //2.管理者通过用户名来模糊或者精确查询用户
+    List<User> selectByUserName(@Param("userName") String userName);
+
+    //3.登录验证(用户手机，密码)
+    User findUserByPhoneNumber(String phoneNumber);
 
     User selectByPrimaryKey(Long userId);
-
-    //2.登录验证(用户手机，密码)
-    User findUserByPhoneNumber(Integer phoneNumber);
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 

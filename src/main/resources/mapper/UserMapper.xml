@@ -6,7 +6,7 @@
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="user_img_url" jdbcType="VARCHAR" property="userImgUrl" />
-    <result column="phone_number" jdbcType="INTEGER" property="phoneNumber" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="user_status" jdbcType="INTEGER" property="userStatus" />
     <result column="photographer_id" jdbcType="BIGINT" property="photographerId" />
@@ -16,16 +16,17 @@
   <resultMap id="ManageUsers" type="com.bean.User">
     <id column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="phone_number" jdbcType="INTEGER" property="phoneNumber" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="user_success_times" jdbcType="INTEGER" property="userSuccessTimes" />
   </resultMap>
   <!--2.用户登录结果集-->
   <resultMap id="UserLogin" type="com.bean.User">
     <id column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="phone_number" jdbcType="INTEGER" property="phoneNumber" />
+    <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
     <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
+
   <!--1.管理员查询用户信息sql-->
   <sql id="Manage_Users">
     user_name,phone_number,email,user_success_times
@@ -35,6 +36,7 @@
   <sql id="User_Login">
     user_id ,phone_number, password
   </sql>
+
 
   <sql id="Example_Where_Clause">
     <where>
@@ -105,18 +107,22 @@
     <include refid="Manage_Users"/>
     FROM USER
     WHERE
-    <if test='user_name != "%null%"'>
-      user_name LIKE #{userName}
+    <!--<if test="userName!=null and userName!=&quot;&quot;">-->
+
+    <!--</if>user_name LIKE "%"#{userName}"%"-->
+    <if test="userName = null">
+      user_name LIKE "%%"
     </if>
   </select>
 
   <!--2.用户登录select语句-->
   <!--User findUserByPhoneNumber(Integer phoneNumber);-->
-  <select id="findUserByPhoneNumber" parameterType="java.lang.Integer" resultMap="UserLogin">
+  <select id="findUserByPhoneNumber" parameterType="java.lang.String" resultMap="UserLogin">
     SELECT
     <include refid="User_Login"/>
     WHERE phone_number=#{phoneNumber}
   </select>
+
 
   <select id="selectByExample" parameterType="com.bean.UserExample" resultMap="BaseResultMap">
     select
@@ -154,7 +160,7 @@
       user_status, photographer_id, user_success_times
       )
     values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{userImgUrl,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
+      #{userImgUrl,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{userStatus,jdbcType=INTEGER}, #{photographerId,jdbcType=BIGINT}, #{userSuccessTimes,jdbcType=INTEGER}
       )
   </insert>
@@ -203,7 +209,7 @@
         #{userImgUrl,jdbcType=VARCHAR},
       </if>
       <if test="phoneNumber != null">
-        #{phoneNumber,jdbcType=INTEGER},
+        #{phoneNumber,jdbcType=VARCHAR},
       </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
@@ -241,7 +247,7 @@
         user_img_url = #{record.userImgUrl,jdbcType=VARCHAR},
       </if>
       <if test="record.phoneNumber != null">
-        phone_number = #{record.phoneNumber,jdbcType=INTEGER},
+        phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
       </if>
       <if test="record.email != null">
         email = #{record.email,jdbcType=VARCHAR},
@@ -266,7 +272,7 @@
       user_name = #{record.userName,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       user_img_url = #{record.userImgUrl,jdbcType=VARCHAR},
-      phone_number = #{record.phoneNumber,jdbcType=INTEGER},
+      phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       user_status = #{record.userStatus,jdbcType=INTEGER},
       photographer_id = #{record.photographerId,jdbcType=BIGINT},
@@ -288,7 +294,7 @@
         user_img_url = #{userImgUrl,jdbcType=VARCHAR},
       </if>
       <if test="phoneNumber != null">
-        phone_number = #{phoneNumber,jdbcType=INTEGER},
+        phone_number = #{phoneNumber,jdbcType=VARCHAR},
       </if>
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
@@ -310,7 +316,7 @@
     set user_name = #{userName,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
       user_img_url = #{userImgUrl,jdbcType=VARCHAR},
-      phone_number = #{phoneNumber,jdbcType=INTEGER},
+      phone_number = #{phoneNumber,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       user_status = #{userStatus,jdbcType=INTEGER},
       photographer_id = #{photographerId,jdbcType=BIGINT},

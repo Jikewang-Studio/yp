@@ -19,7 +19,7 @@ public interface UserService {
      * @param phoneNumber
      * @param password
      */
-    public User checkLogin(Integer phoneNumber,String password);
+    public User checkLogin(String phoneNumber, String password);
 
     /**
      * 1.管理者,根据用户名字模糊查询用户

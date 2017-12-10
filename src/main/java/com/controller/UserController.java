@@ -3,7 +3,6 @@ package com.controller;
 import com.bean.Custom_made;
 import com.bean.User;
 import com.service.CustomService;
-import com.service.Impl.UserServiceImpl;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +31,8 @@ public class UserController {
       }
       return "fail";
     }
+    //1.3用户修改密码,根据短信验证码直接修改
+//    public String changePassword(@Param(""))
     //2.1用户提交定制信息。
     public void insertCustom(Custom_made custom_made){
         customService.insertCustom(custom_made);

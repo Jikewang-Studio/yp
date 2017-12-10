@@ -1,43 +1,49 @@
 package com.bean;
 
 public class User {
-    //用户表Id
+    ////用户表Id
     private Long userId;
-
     //用户姓名
     private String userName;
-
     //密码
     private String password;
-
     //用户头像地址
     private String userImgUrl;
-
     //电话
-    private Integer phoneNumber;
-
+    private String phoneNumber;
     //用户邮箱
     private String email;
-
     //是否是摄影师;1是;0不是
     private Integer userStatus;
-
     //是摄影师的话，对应的摄影师ID
     private Long photographerId;
-
     //拍摄成功次数
     private Integer userSuccessTimes;
 
-    //对象的有参，无参构造器
+    //对象的构造方法，无参，有参
+    public User() {
+    }
 
-    public User(String userName, String password, Integer phoneNumber, String email) {
+    public User(String userName, String password, String phoneNumber, String email) {
         this.userName = userName;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
-    //属性的get，set方法
+    //对象的toString方法
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
+
+    //对象的get,set方法
     public Long getUserId() {
         return userId;
     }
@@ -70,12 +76,12 @@ public class User {
         this.userImgUrl = userImgUrl == null ? null : userImgUrl.trim();
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber == null ? null : phoneNumber.trim();
     }
 
     public String getEmail() {

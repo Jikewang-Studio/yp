@@ -1,6 +1,5 @@
 package com.test;
 import com.bean.Custom_made;
-import com.bean.P_to_u_message;
 import com.bean.U_to_p_message;
 import com.bean.User;
 import com.dao.Custom_madeMapper;
@@ -38,14 +37,19 @@ public class MapperTest {
     public void testCRUD() {
 //        1.测试用户增加 ----》成功
 //        userMapper.insert(
-//                new User("haha5","ling",15451515,"44518@163.com"));
+//                new User("wodetian","ling","15451515","44518@163.com"));
 //        System.out.println("插入成功了~~");
 //        2.测试用户查询--->成功
 //       User user=userMapper.selectByPrimaryKey(Long.valueOf(1));
 //        System.out.println(user);
-//        3.模糊查询.
-    }
+//        3.模糊查询.--->成功
+        List<User> users = userMapper.selectByUserName(null);
+        System.out.println(users.size());
+        for (User user : users) {
+            System.out.println(user);
 
+        }
+    }
     @Test
     public void testMeaages() {
         //1.测试摄影师根据Id，获取到用户给自己的留言信息---》成功

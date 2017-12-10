@@ -26,7 +26,7 @@ public class MessageServiceImpl implements MessageService {
      * @param photographerId
      */
     @Override
-    public List<U_to_p_message> getUMessages(Long photographerId) {
+    public List<U_to_p_message> getUMessages(Integer photographerId) {
         return u_to_p_messageMapper.selectByPhotographerId(photographerId);
     }
     /**
@@ -43,7 +43,7 @@ public class MessageServiceImpl implements MessageService {
      * @param userId
      */
     @Override
-    public List<P_to_u_message> getPMessages(Long userId) {
+    public List<P_to_u_message> getPMessages(Integer userId) {
         return p_to_u_messageMapper.selectByUserId(userId);
     }
 }

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.Custom_madeMapper">
   <resultMap id="BaseResultMap" type="com.bean.Custom_made">
-    <id column="custom_made_id" jdbcType="BIGINT" property="customMadeId" />
+    <id column="custom_made_id" jdbcType="Integer" property="customMadeId" />
     <result column="college_name" jdbcType="VARCHAR" property="collegeName" />
     <result column="class_name" jdbcType="VARCHAR" property="className" />
     <result column="people_quantity" jdbcType="INTEGER" property="peopleQuantity" />
@@ -13,7 +13,7 @@
   </resultMap>
   <!--1.管理者按类型，查询定制信息-->
   <resultMap id="GetCustoms" type="com.bean.Custom_made">
-    <id column="custom_made_id" jdbcType="BIGINT" property="customMadeId" />
+    <id column="custom_made_id" jdbcType="Integer" property="customMadeId" />
     <result column="college_name" jdbcType="VARCHAR" property="collegeName" />
     <result column="class_name" jdbcType="VARCHAR" property="className" />
     <result column="contact_phone_number" jdbcType="VARCHAR" property="contactPhoneNumber" />
@@ -115,15 +115,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from custom_made
-    where custom_made_id = #{customMadeId,jdbcType=BIGINT}
+    where custom_made_id = #{customMadeId,jdbcType=Integer}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from custom_made
-    where custom_made_id = #{customMadeId,jdbcType=BIGINT}
+    where custom_made_id = #{customMadeId,jdbcType=Integer}
   </delete>
   <delete id="deleteByExample" parameterType="com.bean.Custom_madeExample">
     delete from custom_made
@@ -136,7 +136,7 @@
     insert into custom_made (custom_made_id, college_name, class_name, 
       people_quantity, contact_name, contact_phone_number, 
       extra_information, custom_type)
-    values (#{customMadeId,jdbcType=BIGINT}, #{collegeName,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR}, 
+    values (#{customMadeId,jdbcType=Integer}, #{collegeName,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR}, 
       #{peopleQuantity,jdbcType=INTEGER}, #{contactName,jdbcType=VARCHAR}, #{contactPhoneNumber,jdbcType=VARCHAR}, 
       #{extraInformation,jdbcType=VARCHAR}, #{customType,jdbcType=INTEGER})
   </insert>
@@ -170,7 +170,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="customMadeId != null">
-        #{customMadeId,jdbcType=BIGINT},
+        #{customMadeId,jdbcType=Integer},
       </if>
       <if test="collegeName != null">
         #{collegeName,jdbcType=VARCHAR},
@@ -195,7 +195,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bean.Custom_madeExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.bean.Custom_madeExample" resultType="java.lang.Integer">
     select count(*) from custom_made
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -205,7 +205,7 @@
     update custom_made
     <set>
       <if test="record.customMadeId != null">
-        custom_made_id = #{record.customMadeId,jdbcType=BIGINT},
+        custom_made_id = #{record.customMadeId,jdbcType=Integer},
       </if>
       <if test="record.collegeName != null">
         college_name = #{record.collegeName,jdbcType=VARCHAR},
@@ -235,7 +235,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update custom_made
-    set custom_made_id = #{record.customMadeId,jdbcType=BIGINT},
+    set custom_made_id = #{record.customMadeId,jdbcType=Integer},
       college_name = #{record.collegeName,jdbcType=VARCHAR},
       class_name = #{record.className,jdbcType=VARCHAR},
       people_quantity = #{record.peopleQuantity,jdbcType=INTEGER},
@@ -272,7 +272,7 @@
         custom_type = #{customType,jdbcType=INTEGER},
       </if>
     </set>
-    where custom_made_id = #{customMadeId,jdbcType=BIGINT}
+    where custom_made_id = #{customMadeId,jdbcType=Integer}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bean.Custom_made">
     update custom_made
@@ -283,6 +283,6 @@
       contact_phone_number = #{contactPhoneNumber,jdbcType=VARCHAR},
       extra_information = #{extraInformation,jdbcType=VARCHAR},
       custom_type = #{customType,jdbcType=INTEGER}
-    where custom_made_id = #{customMadeId,jdbcType=BIGINT}
+    where custom_made_id = #{customMadeId,jdbcType=Integer}
   </update>
 </mapper>

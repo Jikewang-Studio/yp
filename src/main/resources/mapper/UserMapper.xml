@@ -2,19 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.UserMapper">
   <resultMap id="BaseResultMap" type="com.bean.User">
-    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <id column="user_id" jdbcType="Integer" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="user_img_url" jdbcType="VARCHAR" property="userImgUrl" />
     <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="user_status" jdbcType="INTEGER" property="userStatus" />
-    <result column="photographer_id" jdbcType="BIGINT" property="photographerId" />
+    <result column="photographer_id" jdbcType="Integer" property="photographerId" />
     <result column="user_success_times" jdbcType="INTEGER" property="userSuccessTimes" />
   </resultMap>
   <!--1.管理者界面用户信息结果集-->
   <resultMap id="ManageUsers" type="com.bean.User">
-    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <id column="user_id" jdbcType="Integer" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
     <result column="email" jdbcType="VARCHAR" property="email" />
@@ -22,7 +22,7 @@
   </resultMap>
   <!--2.用户登录结果集-->
   <resultMap id="UserLogin" type="com.bean.User">
-    <id column="user_id" jdbcType="BIGINT" property="userId" />
+    <id column="user_id" jdbcType="Integer" property="userId" />
     <result column="phone_number" jdbcType="VARCHAR" property="phoneNumber" />
     <result column="password" jdbcType="VARCHAR" property="password" />
   </resultMap>
@@ -142,11 +142,11 @@
     select 
     <include refid="Base_Column_List" />
     from user
-    where user_id = #{userId,jdbcType=BIGINT}
+    where user_id = #{userId,jdbcType=Integer}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from user
-    where user_id = #{userId,jdbcType=BIGINT}
+    where user_id = #{userId,jdbcType=Integer}
   </delete>
   <delete id="deleteByExample" parameterType="com.bean.UserExample">
     delete from user
@@ -159,9 +159,9 @@
       user_img_url, phone_number, email, 
       user_status, photographer_id, user_success_times
       )
-    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{userId,jdbcType=Integer}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{userImgUrl,jdbcType=VARCHAR}, #{phoneNumber,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{userStatus,jdbcType=INTEGER}, #{photographerId,jdbcType=BIGINT}, #{userSuccessTimes,jdbcType=INTEGER}
+      #{userStatus,jdbcType=INTEGER}, #{photographerId,jdbcType=Integer}, #{userSuccessTimes,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.bean.User">
@@ -197,7 +197,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=Integer},
       </if>
       <if test="userName != null">
         #{userName,jdbcType=VARCHAR},
@@ -218,7 +218,7 @@
         #{userStatus,jdbcType=INTEGER},
       </if>
       <if test="photographerId != null">
-        #{photographerId,jdbcType=BIGINT},
+        #{photographerId,jdbcType=Integer},
       </if>
       <if test="userSuccessTimes != null">
         #{userSuccessTimes,jdbcType=INTEGER},
@@ -235,7 +235,7 @@
     update user
     <set>
       <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=BIGINT},
+        user_id = #{record.userId,jdbcType=Integer},
       </if>
       <if test="record.userName != null">
         user_name = #{record.userName,jdbcType=VARCHAR},
@@ -256,7 +256,7 @@
         user_status = #{record.userStatus,jdbcType=INTEGER},
       </if>
       <if test="record.photographerId != null">
-        photographer_id = #{record.photographerId,jdbcType=BIGINT},
+        photographer_id = #{record.photographerId,jdbcType=Integer},
       </if>
       <if test="record.userSuccessTimes != null">
         user_success_times = #{record.userSuccessTimes,jdbcType=INTEGER},
@@ -268,14 +268,14 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update user
-    set user_id = #{record.userId,jdbcType=BIGINT},
+    set user_id = #{record.userId,jdbcType=Integer},
       user_name = #{record.userName,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       user_img_url = #{record.userImgUrl,jdbcType=VARCHAR},
       phone_number = #{record.phoneNumber,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       user_status = #{record.userStatus,jdbcType=INTEGER},
-      photographer_id = #{record.photographerId,jdbcType=BIGINT},
+      photographer_id = #{record.photographerId,jdbcType=Integer},
       user_success_times = #{record.userSuccessTimes,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -303,13 +303,13 @@
         user_status = #{userStatus,jdbcType=INTEGER},
       </if>
       <if test="photographerId != null">
-        photographer_id = #{photographerId,jdbcType=BIGINT},
+        photographer_id = #{photographerId,jdbcType=Integer},
       </if>
       <if test="userSuccessTimes != null">
         user_success_times = #{userSuccessTimes,jdbcType=INTEGER},
       </if>
     </set>
-    where user_id = #{userId,jdbcType=BIGINT}
+    where user_id = #{userId,jdbcType=Integer}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bean.User">
     update user
@@ -319,8 +319,8 @@
       phone_number = #{phoneNumber,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       user_status = #{userStatus,jdbcType=INTEGER},
-      photographer_id = #{photographerId,jdbcType=BIGINT},
+      photographer_id = #{photographerId,jdbcType=Integer},
       user_success_times = #{userSuccessTimes,jdbcType=INTEGER}
-    where user_id = #{userId,jdbcType=BIGINT}
+    where user_id = #{userId,jdbcType=Integer}
   </update>
 </mapper>

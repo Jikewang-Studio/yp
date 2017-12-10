@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface WorksMapper {
-    long countByExample(WorksExample example);
+    Integer countByExample(WorksExample example);
 
     int deleteByExample(WorksExample example);
 
-    int deleteByPrimaryKey(Long worksId);
+    int deleteByPrimaryKey(Integer worksId);
 
     int insert(Works record);
 
@@ -18,7 +18,7 @@ public interface WorksMapper {
 
     List<Works> selectByExample(WorksExample example);
 
-    Works selectByPrimaryKey(Long worksId);
+    Works selectByPrimaryKey(Integer worksId);
 
     int updateByExampleSelective(@Param("record") Works record, @Param("example") WorksExample example);
 

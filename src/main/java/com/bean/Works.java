@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Works {
     //摄影师作品集表
-    private Long worksId;
+    private Integer worksId;
 
     //作品描述
     private String worksDescription;
@@ -13,7 +13,7 @@ public class Works {
     private String worksImgUrl;
 
     //作品对应的摄影师ID
-    private Long photographerId;
+    private Integer photographerId;
 
     //作品类型;(你选择可以固定有哪几种类型)
     private String worksStyle;
@@ -27,11 +27,11 @@ public class Works {
     //图片状态(0表示被删除,1表示正常)
     private Integer workPhotoState;
 
-    public Long getWorksId() {
+    public Integer getWorksId() {
         return worksId;
     }
 
-    public void setWorksId(Long worksId) {
+    public void setWorksId(Integer worksId) {
         this.worksId = worksId;
     }
 
@@ -51,11 +51,11 @@ public class Works {
         this.worksImgUrl = worksImgUrl == null ? null : worksImgUrl.trim();
     }
 
-    public Long getPhotographerId() {
+    public Integer getPhotographerId() {
         return photographerId;
     }
 
-    public void setPhotographerId(Long photographerId) {
+    public void setPhotographerId(Integer photographerId) {
         this.photographerId = photographerId;
     }
 

@@ -1,36 +1,53 @@
 package com.bean;
 
 public class Attention {
-    //用户关注表ID
-    private Long attentionId;
+    private Integer attentionId;
 
-    //用户ID
-    private String uerId;
+    private Integer uerId;
 
-    //关注的摄影师ID
-    private String attentionPhotographerId;
+    private Integer photographerId;
 
-    public Long getAttentionId() {
+    private String photographerName;
+
+    private String photographerImgUrl;
+
+    public Integer getAttentionId() {
         return attentionId;
     }
 
-    public void setAttentionId(Long attentionId) {
+    public void setAttentionId(Integer attentionId) {
         this.attentionId = attentionId;
     }
 
-    public String getUerId() {
+    public Integer getUerId() {
         return uerId;
     }
 
-    public void setUerId(String uerId) {
-        this.uerId = uerId == null ? null : uerId.trim();
+    public void setUerId(Integer uerId) {
+        this.uerId = uerId;
     }
 
-    public String getAttentionPhotographerId() {
-        return attentionPhotographerId;
+    public Integer getPhotographerId() {
+        return photographerId;
     }
 
-    public void setAttentionPhotographerId(String attentionPhotographerId) {
-        this.attentionPhotographerId = attentionPhotographerId == null ? null : attentionPhotographerId.trim();
+    public void setPhotographerId(Integer photographerId) {
+        this.photographerId = photographerId;
+    }
+
+    public String getPhotographerName() {
+        return photographerName;
+    }
+
+    public void setPhotographerName(String photographerName) {
+        this.photographerName = photographerName == null ? null : photographerName.trim();
+    }
+
+    public String getPhotographerImgUrl() {
+        return photographerImgUrl;
+    }
+
+    public void setPhotographerImgUrl(String photographerImgUrl) {
+        this.photographerImgUrl = photographerImgUrl == null ? null : photographerImgUrl.trim();
     }
 }

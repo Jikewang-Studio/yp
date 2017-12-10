@@ -2,17 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.U_to_p_messageMapper">
     <resultMap id="BaseResultMap" type="com.bean.U_to_p_message">
-        <id column="photographer_message_id" jdbcType="BIGINT" property="photographerMessageId"/>
+        <id column="photographer_message_id" jdbcType="Integer" property="photographerMessageId"/>
         <result column="photographer_message_content" jdbcType="VARCHAR" property="photographerMessageContent"/>
-        <result column="user_id" jdbcType="BIGINT" property="userId"/>
-        <result column="photographer_id" jdbcType="BIGINT" property="photographerId"/>
+        <result column="user_id" jdbcType="Integer" property="userId"/>
+        <result column="photographer_id" jdbcType="Integer" property="photographerId"/>
         <result column="message_create" jdbcType="TIMESTAMP" property="messageCreate"/>
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
     </resultMap>
     <!--1.摄影师，获取留言的结果集-->
     <resultMap id="PGetMessages" type="com.bean.U_to_p_message">
-        <id column="photographer_message_id" jdbcType="BIGINT" property="photographerMessageId"/>
-        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <id column="photographer_message_id" jdbcType="Integer" property="photographerMessageId"/>
+        <result column="user_id" jdbcType="Integer" property="userId"/>
         <result column="photographer_message_content" jdbcType="VARCHAR" property="photographerMessageContent"/>
         <result column="message_create" jdbcType="TIMESTAMP" property="messageCreate"/>
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
@@ -124,11 +124,11 @@
         select
         <include refid="Base_Column_List"/>
         from u_to_p_message
-        where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
+        where photographer_message_id = #{photographerMessageId,jdbcType=Integer}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from u_to_p_message
-    where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
+    where photographer_message_id = #{photographerMessageId,jdbcType=Integer}
   </delete>
     <delete id="deleteByExample" parameterType="com.bean.U_to_p_messageExample">
         delete from u_to_p_message
@@ -140,8 +140,8 @@
     insert into u_to_p_message (photographer_message_id, photographer_message_content, 
       user_id, photographer_id, message_create, 
       user_name)
-    values (#{photographerMessageId,jdbcType=BIGINT}, #{photographerMessageContent,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=BIGINT}, #{photographerId,jdbcType=BIGINT}, #{messageCreate,jdbcType=TIMESTAMP}, 
+    values (#{photographerMessageId,jdbcType=Integer}, #{photographerMessageContent,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=Integer}, #{photographerId,jdbcType=Integer}, #{messageCreate,jdbcType=TIMESTAMP}, 
       #{userName,jdbcType=VARCHAR})
   </insert>
     <insert id="insertSelective" parameterType="com.bean.U_to_p_message">
@@ -168,16 +168,16 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="photographerMessageId != null">
-                #{photographerMessageId,jdbcType=BIGINT},
+                #{photographerMessageId,jdbcType=Integer},
             </if>
             <if test="photographerMessageContent != null">
                 #{photographerMessageContent,jdbcType=VARCHAR},
             </if>
             <if test="userId != null">
-                #{userId,jdbcType=BIGINT},
+                #{userId,jdbcType=Integer},
             </if>
             <if test="photographerId != null">
-                #{photographerId,jdbcType=BIGINT},
+                #{photographerId,jdbcType=Integer},
             </if>
             <if test="messageCreate != null">
                 #{messageCreate,jdbcType=TIMESTAMP},
@@ -197,16 +197,16 @@
         update u_to_p_message
         <set>
             <if test="record.photographerMessageId != null">
-                photographer_message_id = #{record.photographerMessageId,jdbcType=BIGINT},
+                photographer_message_id = #{record.photographerMessageId,jdbcType=Integer},
             </if>
             <if test="record.photographerMessageContent != null">
                 photographer_message_content = #{record.photographerMessageContent,jdbcType=VARCHAR},
             </if>
             <if test="record.userId != null">
-                user_id = #{record.userId,jdbcType=BIGINT},
+                user_id = #{record.userId,jdbcType=Integer},
             </if>
             <if test="record.photographerId != null">
-                photographer_id = #{record.photographerId,jdbcType=BIGINT},
+                photographer_id = #{record.photographerId,jdbcType=Integer},
             </if>
             <if test="record.messageCreate != null">
                 message_create = #{record.messageCreate,jdbcType=TIMESTAMP},
@@ -221,10 +221,10 @@
     </update>
     <update id="updateByExample" parameterType="map">
         update u_to_p_message
-        set photographer_message_id = #{record.photographerMessageId,jdbcType=BIGINT},
+        set photographer_message_id = #{record.photographerMessageId,jdbcType=Integer},
         photographer_message_content = #{record.photographerMessageContent,jdbcType=VARCHAR},
-        user_id = #{record.userId,jdbcType=BIGINT},
-        photographer_id = #{record.photographerId,jdbcType=BIGINT},
+        user_id = #{record.userId,jdbcType=Integer},
+        photographer_id = #{record.photographerId,jdbcType=Integer},
         message_create = #{record.messageCreate,jdbcType=TIMESTAMP},
         user_name = #{record.userName,jdbcType=VARCHAR}
         <if test="_parameter != null">
@@ -238,10 +238,10 @@
                 photographer_message_content = #{photographerMessageContent,jdbcType=VARCHAR},
             </if>
             <if test="userId != null">
-                user_id = #{userId,jdbcType=BIGINT},
+                user_id = #{userId,jdbcType=Integer},
             </if>
             <if test="photographerId != null">
-                photographer_id = #{photographerId,jdbcType=BIGINT},
+                photographer_id = #{photographerId,jdbcType=Integer},
             </if>
             <if test="messageCreate != null">
                 message_create = #{messageCreate,jdbcType=TIMESTAMP},
@@ -250,15 +250,15 @@
                 user_name = #{userName,jdbcType=VARCHAR},
             </if>
         </set>
-        where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
+        where photographer_message_id = #{photographerMessageId,jdbcType=Integer}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.bean.U_to_p_message">
     update u_to_p_message
     set photographer_message_content = #{photographerMessageContent,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=BIGINT},
-      photographer_id = #{photographerId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=Integer},
+      photographer_id = #{photographerId,jdbcType=Integer},
       message_create = #{messageCreate,jdbcType=TIMESTAMP},
       user_name = #{userName,jdbcType=VARCHAR}
-    where photographer_message_id = #{photographerMessageId,jdbcType=BIGINT}
+    where photographer_message_id = #{photographerMessageId,jdbcType=Integer}
   </update>
 </mapper>

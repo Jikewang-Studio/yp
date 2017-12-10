@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface P_to_u_messageMapper {
-    long countByExample(P_to_u_messageExample example);
+    Integer countByExample(P_to_u_messageExample example);
 
     int deleteByExample(P_to_u_messageExample example);
 
-    int deleteByPrimaryKey(Long userMessageId);
+    int deleteByPrimaryKey(Integer userMessageId);
 
     int insert(P_to_u_message record);
 
@@ -20,9 +20,9 @@ public interface P_to_u_messageMapper {
 
     List<P_to_u_message> selectByExample(P_to_u_messageExample example);
     //1.用户根据自己Id，获取到摄影师回复的留言信息。
-    List<P_to_u_message> selectByUserId(Long userId);
+    List<P_to_u_message> selectByUserId(Integer userId);
 
-    P_to_u_message selectByPrimaryKey(Long userMessageId);
+    P_to_u_message selectByPrimaryKey(Integer userMessageId);
 
     int updateByExampleSelective(@Param("record") P_to_u_message record, @Param("example") P_to_u_messageExample example);
 

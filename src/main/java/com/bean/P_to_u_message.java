@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class P_to_u_message {
     //摄影师回复用户的留言表Id
-    private Long userMessageId;
+    private Integer userMessageId;
 
     //摄影师给用户留言的内容
     private String userMessageContent;
 
     //用户Id
-    private Long userId;
+    private Integer userId;
 
     //摄影师ID
-    private Long photographerId;
+    private Integer photographerId;
 
     //创建时间
     private Date messageCreate;
@@ -32,11 +32,11 @@ public class P_to_u_message {
     }
 
     //属性的get，set方法
-    public Long getUserMessageId() {
+    public Integer getUserMessageId() {
         return userMessageId;
     }
 
-    public void setUserMessageId(Long userMessageId) {
+    public void setUserMessageId(Integer userMessageId) {
         this.userMessageId = userMessageId;
     }
 
@@ -48,19 +48,19 @@ public class P_to_u_message {
         this.userMessageContent = userMessageContent == null ? null : userMessageContent.trim();
     }
 
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public Long getPhotographerId() {
+    public Integer getPhotographerId() {
         return photographerId;
     }
 
-    public void setPhotographerId(Long photographerId) {
+    public void setPhotographerId(Integer photographerId) {
         this.photographerId = photographerId;
     }
 

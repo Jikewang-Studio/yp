@@ -2,9 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.AttentionMapper">
   <resultMap id="BaseResultMap" type="com.bean.Attention">
-    <id column="attention_id" jdbcType="BIGINT" property="attentionId" />
-    <result column="uer_id" jdbcType="VARCHAR" property="uerId" />
-    <result column="attention_photographer_id" jdbcType="VARCHAR" property="attentionPhotographerId" />
+    <id column="attention_id" jdbcType="INTEGER" property="attentionId" />
+    <result column="uer_id" jdbcType="INTEGER" property="uerId" />
+    <result column="photographer_id" jdbcType="INTEGER" property="photographerId" />
+    <result column="photographer_name" jdbcType="VARCHAR" property="photographerName" />
+    <result column="photographer_img_url" jdbcType="VARCHAR" property="photographerImgUrl" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    attention_id, uer_id, attention_photographer_id
+    attention_id, uer_id, photographer_id, photographer_name, photographer_img_url
   </sql>
   <select id="selectByExample" parameterType="com.bean.AttentionExample" resultMap="BaseResultMap">
     select
@@ -81,15 +83,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from attention
-    where attention_id = #{attentionId,jdbcType=BIGINT}
+    where attention_id = #{attentionId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from attention
-    where attention_id = #{attentionId,jdbcType=BIGINT}
+    where attention_id = #{attentionId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.bean.AttentionExample">
     delete from attention
@@ -97,11 +99,19 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+
+  <!--//1用户通过userId，photographerId来添加关注-->
+  <!--public int  addAttention(@Param("userId")Long userId,@Param("photographerId")Long photographerId);-->
+  <insert id="addAttention" parameterType="com.bean.Attention">
+    insert into attention(uer_id,photographer_id)
+    VALUES (#{uerId},#{photographerId})
+  </insert>
+
   <insert id="insert" parameterType="com.bean.Attention">
-    insert into attention (attention_id, uer_id, attention_photographer_id
-      )
-    values (#{attentionId,jdbcType=BIGINT}, #{uerId,jdbcType=VARCHAR}, #{attentionPhotographerId,jdbcType=VARCHAR}
-      )
+    insert into attention (attention_id, uer_id, photographer_id, 
+      photographer_name, photographer_img_url)
+    values (#{attentionId,jdbcType=INTEGER}, #{uerId,jdbcType=INTEGER}, #{photographerId,jdbcType=INTEGER}, 
+      #{photographerName,jdbcType=VARCHAR}, #{photographerImgUrl,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Attention">
     insert into attention
@@ -112,19 +122,31 @@
       <if test="uerId != null">
         uer_id,
       </if>
-      <if test="attentionPhotographerId != null">
-        attention_photographer_id,
+      <if test="photographerId != null">
+        photographer_id,
+      </if>
+      <if test="photographerName != null">
+        photographer_name,
+      </if>
+      <if test="photographerImgUrl != null">
+        photographer_img_url,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="attentionId != null">
-        #{attentionId,jdbcType=BIGINT},
+        #{attentionId,jdbcType=INTEGER},
       </if>
       <if test="uerId != null">
-        #{uerId,jdbcType=VARCHAR},
+        #{uerId,jdbcType=INTEGER},
       </if>
-      <if test="attentionPhotographerId != null">
-        #{attentionPhotographerId,jdbcType=VARCHAR},
+      <if test="photographerId != null">
+        #{photographerId,jdbcType=INTEGER},
+      </if>
+      <if test="photographerName != null">
+        #{photographerName,jdbcType=VARCHAR},
+      </if>
+      <if test="photographerImgUrl != null">
+        #{photographerImgUrl,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -138,13 +160,19 @@
     update attention
     <set>
       <if test="record.attentionId != null">
-        attention_id = #{record.attentionId,jdbcType=BIGINT},
+        attention_id = #{record.attentionId,jdbcType=INTEGER},
       </if>
       <if test="record.uerId != null">
-        uer_id = #{record.uerId,jdbcType=VARCHAR},
+        uer_id = #{record.uerId,jdbcType=INTEGER},
       </if>
-      <if test="record.attentionPhotographerId != null">
-        attention_photographer_id = #{record.attentionPhotographerId,jdbcType=VARCHAR},
+      <if test="record.photographerId != null">
+        photographer_id = #{record.photographerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.photographerName != null">
+        photographer_name = #{record.photographerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photographerImgUrl != null">
+        photographer_img_url = #{record.photographerImgUrl,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -153,9 +181,11 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update attention
-    set attention_id = #{record.attentionId,jdbcType=BIGINT},
-      uer_id = #{record.uerId,jdbcType=VARCHAR},
-      attention_photographer_id = #{record.attentionPhotographerId,jdbcType=VARCHAR}
+    set attention_id = #{record.attentionId,jdbcType=INTEGER},
+      uer_id = #{record.uerId,jdbcType=INTEGER},
+      photographer_id = #{record.photographerId,jdbcType=INTEGER},
+      photographer_name = #{record.photographerName,jdbcType=VARCHAR},
+      photographer_img_url = #{record.photographerImgUrl,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -164,18 +194,26 @@
     update attention
     <set>
       <if test="uerId != null">
-        uer_id = #{uerId,jdbcType=VARCHAR},
+        uer_id = #{uerId,jdbcType=INTEGER},
       </if>
-      <if test="attentionPhotographerId != null">
-        attention_photographer_id = #{attentionPhotographerId,jdbcType=VARCHAR},
+      <if test="photographerId != null">
+        photographer_id = #{photographerId,jdbcType=INTEGER},
+      </if>
+      <if test="photographerName != null">
+        photographer_name = #{photographerName,jdbcType=VARCHAR},
+      </if>
+      <if test="photographerImgUrl != null">
+        photographer_img_url = #{photographerImgUrl,jdbcType=VARCHAR},
       </if>
     </set>
-    where attention_id = #{attentionId,jdbcType=BIGINT}
+    where attention_id = #{attentionId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bean.Attention">
     update attention
-    set uer_id = #{uerId,jdbcType=VARCHAR},
-      attention_photographer_id = #{attentionPhotographerId,jdbcType=VARCHAR}
-    where attention_id = #{attentionId,jdbcType=BIGINT}
+    set uer_id = #{uerId,jdbcType=INTEGER},
+      photographer_id = #{photographerId,jdbcType=INTEGER},
+      photographer_name = #{photographerName,jdbcType=VARCHAR},
+      photographer_img_url = #{photographerImgUrl,jdbcType=VARCHAR}
+    where attention_id = #{attentionId,jdbcType=INTEGER}
   </update>
 </mapper>

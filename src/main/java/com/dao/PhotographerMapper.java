@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PhotographerMapper {
-    long countByExample(PhotographerExample example);
+    Integer countByExample(PhotographerExample example);
 
     int deleteByExample(PhotographerExample example);
 
-    int deleteByPrimaryKey(Long photographerId);
+    int deleteByPrimaryKey(Integer photographerId);
 
     int insert(Photographer record);
 
@@ -23,7 +23,7 @@ public interface PhotographerMapper {
     List<Photographer> selectByPhotographerName(String photographerName);
 
 
-    Photographer selectByPrimaryKey(Long photographerId);
+    Photographer selectByPrimaryKey(Integer photographerId);
 
     int updateByExampleSelective(@Param("record") Photographer record, @Param("example") PhotographerExample example);
 

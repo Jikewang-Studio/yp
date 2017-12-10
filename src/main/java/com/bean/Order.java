@@ -4,41 +4,41 @@ import java.util.Date;
 
 public class Order {
     //订单表ID
-    private Long orderId;
+    private Integer orderId;
 
     //用户ID
-    private Long userId;
+    private Integer userId;
 
     //摄影师ID
-    private Long photographerId;
+    private Integer photographerId;
 
     //订单创建时间
     private Date orderCreat;
 
     //订单详情ID
-    private Long orderDetailsId;
+    private Integer orderDetailsId;
 
-    public Long getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Long orderId) {
+    public void setOrderId(Integer orderId) {
         this.orderId = orderId;
     }
 
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public Long getPhotographerId() {
+    public Integer getPhotographerId() {
         return photographerId;
     }
 
-    public void setPhotographerId(Long photographerId) {
+    public void setPhotographerId(Integer photographerId) {
         this.photographerId = photographerId;
     }
 
@@ -50,11 +50,11 @@ public class Order {
         this.orderCreat = orderCreat;
     }
 
-    public Long getOrderDetailsId() {
+    public Integer getOrderDetailsId() {
         return orderDetailsId;
     }
 
-    public void setOrderDetailsId(Long orderDetailsId) {
+    public void setOrderDetailsId(Integer orderDetailsId) {
         this.orderDetailsId = orderDetailsId;
     }
 }

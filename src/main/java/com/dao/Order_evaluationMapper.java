@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface Order_evaluationMapper {
-    long countByExample(Order_evaluationExample example);
+    Integer countByExample(Order_evaluationExample example);
 
     int deleteByExample(Order_evaluationExample example);
 
-    int deleteByPrimaryKey(Long orderEvaluationId);
+    int deleteByPrimaryKey(Integer orderEvaluationId);
 
     int insert(Order_evaluation record);
 
@@ -18,7 +18,7 @@ public interface Order_evaluationMapper {
 
     List<Order_evaluation> selectByExample(Order_evaluationExample example);
 
-    Order_evaluation selectByPrimaryKey(Long orderEvaluationId);
+    Order_evaluation selectByPrimaryKey(Integer orderEvaluationId);
 
     int updateByExampleSelective(@Param("record") Order_evaluation record, @Param("example") Order_evaluationExample example);
 

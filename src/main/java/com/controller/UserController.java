@@ -49,7 +49,21 @@ public class UserController {
      * 2.1用户提交定制信息。
      * @param custom_made
      */
-    public void insertCustom(Custom_made custom_made){
+     public void insertCustom(@Param("custom_made") Custom_made custom_made){
         customService.insertCustom(custom_made);
     }
+
+    /**
+     *3.1用户添加关注信息
+     * @param userId
+     * @param photographerId
+     */
+    public void addAttention(@Param("userId") int userId,@Param("photographerId")int photographerId){
+     userService.addAttention(userId,photographerId);
+    }
+
+    /**
+     *3.2用户获取关注的摄影师对象集合
+     */
+//   public String getAttentions(@Param("userId")int userId)
 }

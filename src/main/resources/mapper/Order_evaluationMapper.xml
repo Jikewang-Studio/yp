@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.Order_evaluationMapper">
   <resultMap id="BaseResultMap" type="com.bean.Order_evaluation">
-    <id column="order_evaluation_id" jdbcType="BIGINT" property="orderEvaluationId" />
+    <id column="order_evaluation_id" jdbcType="Integer" property="orderEvaluationId" />
     <result column="order_ evaluation_content" jdbcType="VARCHAR" property="orderEvaluationContent" />
     <result column="order_ evaluation_create" jdbcType="TIMESTAMP" property="orderEvaluationCreate" />
   </resultMap>
@@ -85,11 +85,11 @@
     select 
     <include refid="Base_Column_List" />
     from order_evaluation
-    where order_evaluation_id = #{orderEvaluationId,jdbcType=BIGINT}
+    where order_evaluation_id = #{orderEvaluationId,jdbcType=Integer}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from order_evaluation
-    where order_evaluation_id = #{orderEvaluationId,jdbcType=BIGINT}
+    where order_evaluation_id = #{orderEvaluationId,jdbcType=Integer}
   </delete>
   <delete id="deleteByExample" parameterType="com.bean.Order_evaluationExample">
     delete from order_evaluation
@@ -100,7 +100,7 @@
   <insert id="insert" parameterType="com.bean.Order_evaluation">
     insert into order_evaluation (order_evaluation_id, "order_ evaluation_content", 
       "order_ evaluation_create")
-    values (#{orderEvaluationId,jdbcType=BIGINT}, #{orderEvaluationContent,jdbcType=VARCHAR}, 
+    values (#{orderEvaluationId,jdbcType=Integer}, #{orderEvaluationContent,jdbcType=VARCHAR}, 
       #{orderEvaluationCreate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Order_evaluation">
@@ -118,7 +118,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="orderEvaluationId != null">
-        #{orderEvaluationId,jdbcType=BIGINT},
+        #{orderEvaluationId,jdbcType=Integer},
       </if>
       <if test="orderEvaluationContent != null">
         #{orderEvaluationContent,jdbcType=VARCHAR},
@@ -138,7 +138,7 @@
     update order_evaluation
     <set>
       <if test="record.orderEvaluationId != null">
-        order_evaluation_id = #{record.orderEvaluationId,jdbcType=BIGINT},
+        order_evaluation_id = #{record.orderEvaluationId,jdbcType=Integer},
       </if>
       <if test="record.orderEvaluationContent != null">
         "order_ evaluation_content" = #{record.orderEvaluationContent,jdbcType=VARCHAR},
@@ -153,7 +153,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update order_evaluation
-    set order_evaluation_id = #{record.orderEvaluationId,jdbcType=BIGINT},
+    set order_evaluation_id = #{record.orderEvaluationId,jdbcType=Integer},
       "order_ evaluation_content" = #{record.orderEvaluationContent,jdbcType=VARCHAR},
       "order_ evaluation_create" = #{record.orderEvaluationCreate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -170,12 +170,12 @@
         "order_ evaluation_create" = #{orderEvaluationCreate,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where order_evaluation_id = #{orderEvaluationId,jdbcType=BIGINT}
+    where order_evaluation_id = #{orderEvaluationId,jdbcType=Integer}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bean.Order_evaluation">
     update order_evaluation
     set "order_ evaluation_content" = #{orderEvaluationContent,jdbcType=VARCHAR},
       "order_ evaluation_create" = #{orderEvaluationCreate,jdbcType=TIMESTAMP}
-    where order_evaluation_id = #{orderEvaluationId,jdbcType=BIGINT}
+    where order_evaluation_id = #{orderEvaluationId,jdbcType=Integer}
   </update>
 </mapper>

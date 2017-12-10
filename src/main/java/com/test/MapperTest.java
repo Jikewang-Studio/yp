@@ -43,7 +43,7 @@ public class MapperTest {
 //       User user=userMapper.selectByPrimaryKey(Long.valueOf(1));
 //        System.out.println(user);
 //        3.模糊查询.--->成功
-        List<User> users = userMapper.selectByUserName(null);
+        List<User> users = userMapper.selectByUserName("a");
         System.out.println(users.size());
         for (User user : users) {
             System.out.println(user);
@@ -73,9 +73,15 @@ public class MapperTest {
 
     @Test
     public void testCustomMade(){
-        //3.1用户提交定制订单
-        custom_madeMapper.insert
-           (new Custom_made(null,"背影大学","经管二班",10,"张先生","12345678915",null,0));
-        System.out.println("用户提交定制订单成功！！");
+        //3.1用户提交定制订单--->成功
+//        custom_madeMapper.insert
+//           (new Custom_made(null,"背影大学","经管二班",10,"张先生","12345678915",null,0));
+//        System.out.println("用户提交定制订单成功！！");
+       //3.2管理者通过订单类型获取订单--->成功
+        List<Custom_made> custom_mades=custom_madeMapper.selectByCustomType(1);
+        for (Custom_made c:custom_mades){
+            System.out.println(c);
+        }
+        System.out.println("成功获取了");
     }
 }

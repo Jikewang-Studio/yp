@@ -24,7 +24,10 @@ public class CustomServiceImpl implements CustomService {
         custom_madeMapper.insert(custom_made);
     }
 
-    //2.管理者查询各种类型的订单
+    /**
+     * 2.管理者查询各种类型的订单
+     * @param customType
+     */
     public List<Custom_made> getCustoms(Integer customType) {
         return custom_madeMapper.selectByCustomType(customType);
     }

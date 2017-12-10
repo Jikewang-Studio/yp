@@ -20,11 +20,12 @@
     <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
     <result column="contact_phone_number" jdbcType="INTEGER" property="contactPhoneNumber" />
     <result column="extra_information" jdbcType="VARCHAR" property="extraInformation" />
+    <result column="custom_type" jdbcType="INTEGER" property="customType" />
   </resultMap>
 
   <!--1.管理者按类型查询发送的sql-->
   <sql id="GetCustoms">
-    custom_made_id, college_name, class_name, people_quantity, contact_name, contact_phone_number,
+    custom_made_id, college_name, class_name, people_quantity, contact_name, contact_phone_number,custom_type,
     extra_information
   </sql>
 

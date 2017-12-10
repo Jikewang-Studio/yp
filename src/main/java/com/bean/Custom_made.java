@@ -39,7 +39,7 @@ public class Custom_made {
         this.extraInformation = extraInformation;
         this.customType=customType;
     }
-
+   //对象的toString方法
     @Override
     public String toString() {
         return "Custom_made{" +

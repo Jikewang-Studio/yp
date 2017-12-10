@@ -106,11 +106,11 @@
     SELECT
     <include refid="Manage_Users"/>
     FROM USER
-    WHERE
-    <!--<if test="userName!=null and userName!=&quot;&quot;">-->
-
-    <!--</if>user_name LIKE "%"#{userName}"%"-->
-    <if test="userName = null">
+     WHERE
+    <if test="userName!=null and userName!=&quot;&quot;">
+      user_name LIKE "%"#{userName}"%"
+    </if>
+    <if test="userName==null">
       user_name LIKE "%%"
     </if>
   </select>

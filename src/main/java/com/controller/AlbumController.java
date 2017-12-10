@@ -13,6 +13,7 @@ import java.util.Map;
 
 /**
  * Create by 文童 2017/12/9
+ * 相册控制器
  */
 @Controller
 @RequestMapping("/album")

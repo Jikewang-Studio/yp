@@ -4,7 +4,7 @@
 
     <!--通过摄影师Id获取摄影师详细信息-->
   <select id="getPhotographerDetailsById" resultType="Map">
-      SELECT * FROM photographer WHERE photographer_id=#{PG_id};
+      SELECT * FROM photographer WHERE photographer_id=#{PG_id} AND photographer_state=1;
   </select>
 
     <!--摄影师注册-->

@@ -1,5 +1,7 @@
 package com.bean;
 
+import java.util.Date;
+
 public class Photographer {
     //摄影师Id
     private int photographerId;
@@ -30,6 +32,9 @@ public class Photographer {
 
     //摄影师简介
     private String photographerIntro;
+
+    //摄影师注册时间
+    private Date photographer_register_time;
 
     public int getPhotographerId() {
         return photographerId;
@@ -109,5 +114,13 @@ public class Photographer {
 
     public void setPhotographerIntro(String photographerIntro) {
         this.photographerIntro = photographerIntro;
+    }
+
+    public Date getPhotographer_register_time() {
+        return photographer_register_time;
+    }
+
+    public void setPhotographer_register_time(Date photographer_register_time) {
+        this.photographer_register_time = photographer_register_time;
     }
 }

@@ -22,8 +22,8 @@ public class TextMapper {
     @Test
     public void textPhotographerDao(){
         System.out.println(photographerDao.getPhotographerDetailsById(1));
-        System.out.println(photographerDao.photographerRegister(1,"wt","500243199810015352",'M'));
-        System.out.println(photographerDao.updatePhotographerIntro(1,"我叫text02"));
+//        System.out.println(photographerDao.photographerRegister(1,"wt","500243199810015352",'M'));
+//        System.out.println(photographerDao.updatePhotographerIntro(1,"我叫text02"));
     }
 
     @Test

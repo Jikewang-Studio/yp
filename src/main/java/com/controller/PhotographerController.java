@@ -1,7 +1,5 @@
 package com.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.bean.Photography;
 import com.service.PhotographerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +11,7 @@ import javax.annotation.Resource;
 import java.util.Map;
 
 /**
+ * Create by 文童 2017/12/2
  * 摄影师控制器
  */
 @Controller

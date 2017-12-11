@@ -38,4 +38,12 @@ public class AlbumServiceImpl implements AlbumService{
     public List<Map<String, Object>> getPhotoIdAndUrlByAlbumId(int AlbumId) {
         return albumDao.getPhotoIdAndUrlByAlbumId(AlbumId);
     }
+
+    /**
+     * 返回所有的相册信息
+     * @return
+     */
+    public List<Map<String,Object>> getAllAlbumInfro(int photographer_id){
+        return albumDao.getAllAlbumInfro(photographer_id);
+    }
 }

@@ -26,4 +26,10 @@ public interface AlbumService {
      * @return
      */
     public List<Map<String, Object>> getPhotoIdAndUrlByAlbumId(int AlbumId);
+
+    /**
+     * 返回所有的相册信息
+     * @return
+     */
+    public List<Map<String,Object>> getAllAlbumInfro(int photographer_id);
 }

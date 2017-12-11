@@ -13,4 +13,14 @@
         INSERT INTO photographypics(album_id,PhotographyPics_pushTime,PhotographyPics_url)
                 VALUES (#{album_id},now(),#{PhotographyPics_url});
     </insert>
+
+    <!--编辑图片-->
+    <update id="updatePhotoUrl">
+        UPDATE photographypics SET PhotographyPics_url=#{PhotographyPics_url} WHERE album_id=#{album_id} AND PhotographyPics_id=#{PhotographyPics_id} AND PhotographyPics_state=1
+    </update>
+
+    <!--删除指定相册ID 和图片ID的图片(修改状态码)-->
+    <update id="deletePhoto">
+        UPDATE photographypics SET PhotographyPics_state=0 WHERE album_id=#{album_id} AND PhotographyPics_id=#{PhotographyPics_id};
+    </update>
 </mapper>

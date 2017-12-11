@@ -16,6 +16,11 @@
 
     <!--通过相册Id获取相册里面的图片的Id 和URL-->
     <select id="getPhotoIdAndUrlByAlbumId" resultType="Map">
-        SELECT PhotographyPics_id,PhotographyPics_url FROM PhotographyPics WHERE album_id=1 AND album_state=1;
+        SELECT PhotographyPics_id,PhotographyPics_url FROM PhotographyPics WHERE album_id=#{AlbumId};
+    </select>
+
+    <!--根据摄影师ID返回所有的相册信息-->
+    <select id="getAllAlbumInfro" resultType="Map">
+        SELECT * FROM album WHERE photographer_id=#{photographer_id} AND album_state=1;
     </select>
 </mapper>

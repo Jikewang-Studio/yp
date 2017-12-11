@@ -1,5 +1,7 @@
 package com.test;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.dao.AlbumDao;
 import com.dao.PhotographerDao;
 import com.service.PhotographerService;
@@ -31,4 +33,6 @@ public class TextMapper {
         System.out.println(albumDao.createAlbum(1,"text01","adress01"));
         System.out.println(albumDao.getPhotoIdAndUrlByAlbumId(1));
     }
+
+
 }

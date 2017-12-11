@@ -23,5 +23,15 @@ getPhotoIdAndUrlByAlbumId:<br>
     AlbumId:<input type="text" name="AlbumId"><br>
     <input type="submit" name="submit">
 </form>
+getPhotoIdAndUrlByAlbumId:<br>
+<form action="/album/getAllAlbumID" method="post">
+    photographer_id:<input type="text" name="photographer_id">
+    <input type="submit" name="submit">
+</form>
+getAlbumAndPhoto:<br>
+<form action="/album/getAlbumAndPhoto" method="post">
+    photographer_id:<input type="text" name="photographer_id">
+    <input type="submit" name="submit">
+</form>
 </body>
 </html>

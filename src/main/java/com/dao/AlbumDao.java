@@ -37,4 +37,10 @@ public interface AlbumDao {
      * @return
      */
     public List<Map<String, Object>> getPhotoIdAndUrlByAlbumId(@Param("AlbumId") int AlbumId);
+
+    /**
+     * 根据摄影师ID返回所有的相册信息
+     * @return
+     */
+    public List<Map<String,Object>> getAllAlbumInfro(@Param("photographer_id")int photographer_id);
 }

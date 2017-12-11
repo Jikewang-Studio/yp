@@ -14,4 +14,21 @@ public interface PhotographyPicsService {
      * @return
      */
     public int fileUpload(int album_id,String PhotographyPics_url);
+
+    /**
+     * 编辑图片
+     * @param album_id
+     * @param PhotographyPics_url
+     * @Param PhotographyPics_id
+     * @return
+     */
+    public int updatePhotoUrl(int album_id,String PhotographyPics_url,int PhotographyPics_id);
+
+    /**
+     * 删除指定相册ID 和图片ID的图片(修改状态码)
+     * @param album_id
+     * @param PhotographyPics_id
+     * @return
+     */
+    public int deletePhoto(int album_id,int PhotographyPics_id);
 }

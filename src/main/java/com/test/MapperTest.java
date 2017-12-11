@@ -2,10 +2,7 @@ package com.test;
 import com.bean.Custom_made;
 import com.bean.U_to_p_message;
 import com.bean.User;
-import com.dao.Custom_madeMapper;
-import com.dao.P_to_u_messageMapper;
-import com.dao.U_to_p_messageMapper;
-import com.dao.UserMapper;
+import com.dao.*;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +29,8 @@ public class MapperTest {
     Custom_madeMapper custom_madeMapper;
     @Autowired
     SqlSession sqlSession;
-
+//    @Autowired
+//    AttentionMapper attentionMapper;
     @Test
     public void testCRUD() {
 //        1.测试用户增加 ----》成功
@@ -43,7 +41,7 @@ public class MapperTest {
 //       User user=userMapper.selectByPrimaryKey(Long.valueOf(1));
 //        System.out.println(user);
 //        3.模糊查询.--->成功
-        List<User> users = userMapper.selectByUserName(null);
+        List<User> users = userMapper.selectByUserName("a");
         System.out.println(users.size());
         for (User user : users) {
             System.out.println(user);
@@ -61,7 +59,7 @@ public class MapperTest {
 
          //2.1测试用户给摄影师留言。--->成功
         u_to_p_messageMapper.addMessage
-        (new U_to_p_message("哈哈",Long.valueOf(1),Long.valueOf(2)));
+        (new U_to_p_message("哈哈",1,2));
         System.out.println("插入成功~");
 
         //2.2测试用户根据Id，获取到摄影师给自己的留言。-->测试成功
@@ -72,10 +70,23 @@ public class MapperTest {
     }
 
     @Test
-    public void testCustomMade(){
-        //3.1用户提交定制订单
-        custom_madeMapper.insert
-           (new Custom_made(null,"背影大学","经管二班",10,"张先生","12345678915",null,0));
-        System.out.println("用户提交定制订单成功！！");
+    public void testCustomMade() {
+        //3.1用户提交定制订单--->成功
+//        custom_madeMapper.insert
+//           (new Custom_made(null,"背影大学","经管二班",10,"张先生","12345678915",null,0));
+//        System.out.println("用户提交定制订单成功！！");
+        //3.2管理者通过订单类型获取订单--->成功
+        List<Custom_made> custom_mades = custom_madeMapper.selectByCustomType(1);
+        for (Custom_made c : custom_mades) {
+            System.out.println(c);
+        }
+        System.out.println("成功获取了");
+    }
+    @Test
+    public void testAttention(){
+        //4.1用户添加，关注摄影师--->成功
+//        attentionMapper.addAttention(Long.valueOf(1),Long.valueOf(2));
+//        System.out.println("关注成功");
+        //4.2用户获取，关注的摄影师
     }
 }

@@ -2,7 +2,7 @@ package com.bean;
 
 public class Order_details {
     //订单详情表ID
-    private Long orderDetailsId;
+    private Integer orderDetailsId;
 
     //0;表示已经处理；1表示未处理
     private Integer orderStatus;
@@ -14,13 +14,13 @@ public class Order_details {
     private Integer orderQuantity;
 
     //订单评价ID
-    private Long orderEvaluationId;
+    private Integer orderEvaluationId;
 
-    public Long getOrderDetailsId() {
+    public Integer getOrderDetailsId() {
         return orderDetailsId;
     }
 
-    public void setOrderDetailsId(Long orderDetailsId) {
+    public void setOrderDetailsId(Integer orderDetailsId) {
         this.orderDetailsId = orderDetailsId;
     }
 
@@ -48,11 +48,11 @@ public class Order_details {
         this.orderQuantity = orderQuantity;
     }
 
-    public Long getOrderEvaluationId() {
+    public Integer getOrderEvaluationId() {
         return orderEvaluationId;
     }
 
-    public void setOrderEvaluationId(Long orderEvaluationId) {
+    public void setOrderEvaluationId(Integer orderEvaluationId) {
         this.orderEvaluationId = orderEvaluationId;
     }
 }

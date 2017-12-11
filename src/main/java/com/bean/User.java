@@ -2,7 +2,7 @@ package com.bean;
 
 public class User {
     ////用户表Id
-    private Long userId;
+    private Integer userId;
     //用户姓名
     private String userName;
     //密码
@@ -16,7 +16,7 @@ public class User {
     //是否是摄影师;1是;0不是
     private Integer userStatus;
     //是摄影师的话，对应的摄影师ID
-    private Long photographerId;
+    private Integer photographerId;
     //拍摄成功次数
     private Integer userSuccessTimes;
 
@@ -44,11 +44,11 @@ public class User {
     }
 
     //对象的get,set方法
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -100,11 +100,11 @@ public class User {
         this.userStatus = userStatus;
     }
 
-    public Long getPhotographerId() {
+    public Integer getPhotographerId() {
         return photographerId;
     }
 
-    public void setPhotographerId(Long photographerId) {
+    public void setPhotographerId(Integer photographerId) {
         this.photographerId = photographerId;
     }
 

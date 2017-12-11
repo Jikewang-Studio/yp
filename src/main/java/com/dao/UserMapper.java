@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserMapper {
-    long countByExample(UserExample example);
+    Integer countByExample(UserExample example);
 
     int deleteByExample(UserExample example);
 
-    int deleteByPrimaryKey(Long userId);
+    int deleteByPrimaryKey(Integer userId);
    //1.用户注册
     int insert(User record);
 
@@ -25,7 +25,7 @@ public interface UserMapper {
     //3.登录验证(用户手机，密码)
     User findUserByPhoneNumber(String phoneNumber);
 
-    User selectByPrimaryKey(Long userId);
+    User selectByPrimaryKey(Integer userId);
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 

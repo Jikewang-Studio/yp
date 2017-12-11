@@ -26,4 +26,11 @@ public interface UserService {
      * @param userName
      */
     public List<User> getUsers(String userName);
+
+    /**
+     * 3.1用户添加关注摄影师
+     * @param userId
+     * @param photographerId
+     */
+     public void addAttention(int userId,int photographerId);
 }

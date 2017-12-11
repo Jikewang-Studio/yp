@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface Custom_madeMapper {
-    long countByExample(Custom_madeExample example);
+    Integer countByExample(Custom_madeExample example);
 
     int deleteByExample(Custom_madeExample example);
 
-    int deleteByPrimaryKey(Long customMadeId);
+    int deleteByPrimaryKey(Integer customMadeId);
     //1.用户添加定制
     int insert(Custom_made record);
 
@@ -22,7 +22,7 @@ public interface Custom_madeMapper {
     //2.管理者，通过类型查看所有的定制情况
     List<Custom_made> selectByCustomType(Integer customType);
 
-    Custom_made selectByPrimaryKey(Long customMadeId);
+    Custom_made selectByPrimaryKey(Integer customMadeId);
 
     int updateByExampleSelective(@Param("record") Custom_made record, @Param("example") Custom_madeExample example);
 

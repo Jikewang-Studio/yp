@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Order_evaluation {
     //订单评价表Id
-    private Long orderEvaluationId;
+    private Integer orderEvaluationId;
 
     //订单评价内容
     private String orderEvaluationContent;
@@ -12,11 +12,11 @@ public class Order_evaluation {
     //订单评价时间
     private Date orderEvaluationCreate;
 
-    public Long getOrderEvaluationId() {
+    public Integer getOrderEvaluationId() {
         return orderEvaluationId;
     }
 
-    public void setOrderEvaluationId(Long orderEvaluationId) {
+    public void setOrderEvaluationId(Integer orderEvaluationId) {
         this.orderEvaluationId = orderEvaluationId;
     }
 

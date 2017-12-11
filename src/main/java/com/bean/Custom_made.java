@@ -2,7 +2,7 @@ package com.bean;
 
 public class Custom_made {
     //用户定制表ID
-    private Long customMadeId;
+    private Integer customMadeId;
 
     //学院名称
     private String collegeName;
@@ -29,7 +29,7 @@ public class Custom_made {
     public Custom_made() {
     }
 
-    public Custom_made(Long customMadeId, String collegeName, String className, Integer peopleQuantity, String contactName, String contactPhoneNumber, String extraInformation,Integer customType) {
+    public Custom_made(Integer customMadeId, String collegeName, String className, Integer peopleQuantity, String contactName, String contactPhoneNumber, String extraInformation,Integer customType) {
         this.customMadeId = customMadeId;
         this.collegeName = collegeName;
         this.className = className;
@@ -39,7 +39,7 @@ public class Custom_made {
         this.extraInformation = extraInformation;
         this.customType=customType;
     }
-
+   //对象的toString方法
     @Override
     public String toString() {
         return "Custom_made{" +
@@ -54,11 +54,11 @@ public class Custom_made {
                 '}';
     }
 
-    public Long getCustomMadeId() {
+    public Integer getCustomMadeId() {
         return customMadeId;
     }
 
-    public void setCustomMadeId(Long customMadeId) {
+    public void setCustomMadeId(Integer customMadeId) {
         this.customMadeId = customMadeId;
     }
 

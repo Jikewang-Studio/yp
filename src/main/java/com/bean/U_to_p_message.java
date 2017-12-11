@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class U_to_p_message {
     //用户给摄影师的留言表
-    private Long photographerMessageId;
+    private Integer photographerMessageId;
 
     //用户给摄影师留言的内容
     private String photographerMessageContent;
 
     //用户ID
-    private Long userId;
+    private Integer userId;
 
     //摄影师ID
-    private Long photographerId;
+    private Integer photographerId;
 
     //创建时间
     private Date messageCreate;
@@ -35,18 +35,18 @@ public class U_to_p_message {
     public U_to_p_message() {
     }
 
-    public U_to_p_message(String photographerMessageContent, Long userId, Long photographerId) {
+    public U_to_p_message(String photographerMessageContent, Integer userId, Integer photographerId) {
         this.photographerMessageContent = photographerMessageContent;
         this.userId = userId;
         this.photographerId = photographerId;
     }
 
     //属性的get和set方法
-    public Long getPhotographerMessageId() {
+    public Integer getPhotographerMessageId() {
         return photographerMessageId;
     }
 
-    public void setPhotographerMessageId(Long photographerMessageId) {
+    public void setPhotographerMessageId(Integer photographerMessageId) {
         this.photographerMessageId = photographerMessageId;
     }
 
@@ -58,19 +58,19 @@ public class U_to_p_message {
         this.photographerMessageContent = photographerMessageContent == null ? null : photographerMessageContent.trim();
     }
 
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
-    public Long getPhotographerId() {
+    public Integer getPhotographerId() {
         return photographerId;
     }
 
-    public void setPhotographerId(Long photographerId) {
+    public void setPhotographerId(Integer photographerId) {
         this.photographerId = photographerId;
     }
 

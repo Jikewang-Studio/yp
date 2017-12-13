@@ -1,0 +1,14 @@
+更新摄影师简介的接口
+
+URL:/photographer/changeIntro
+
+所需数据与数据名
+
+id:<input * name="photographerId"><br>		摄影师ID
+intro:<input * name="intro"><br>		更新的简介内容
+
+更新成功返回1
+失败暂定(还未完善异常捕捉)
+
+（有问题与wt协商）
+

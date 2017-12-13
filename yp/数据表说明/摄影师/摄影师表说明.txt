@@ -1,0 +1,12 @@
+字段名				注释
+photographer_id			摄影师ID
+photographer_name		摄影师姓名
+photographer_img_url		摄影师头像地址
+price				摄影师价格
+sex				摄影师性别
+ID_number			摄影师身份证号
+user_id				该摄影师对应的用户ID
+photographer_success_times	摄影师约拍成功次数
+photographer_state		摄影师的状态码(0表示待审核，1表示正常，5表示被举报，10表示被删除，100表示被推送到首页)
+photographer_intro		摄影师简介
+photographer_register_time	摄影师注册时间
